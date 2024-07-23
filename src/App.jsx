@@ -1,7 +1,9 @@
+import WinePage from "./pages/WinePage";
+
 const App = () => {
   return (
     <div>
-      App
+      <WinePage />
     </div>
   );
 }
