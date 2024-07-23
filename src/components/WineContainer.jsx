@@ -5,15 +5,15 @@ import WineList from "./WineList";
 const WineContainer = () => {
   const [wines, setWines] = useState([]);
 
+  const fetchWines = async () => {
+    const wines = await getWines();
+
+    console.log("data: >> ", wines);
+
+    setWines(wines);
+  };
+
   useEffect(() => {
-    const fetchWines = async () => {
-      const wines = await getWines();
-
-      console.log("data: >> ", wines);
-
-      setWines(wines);
-    };
-
     fetchWines();
   }, []);
 
