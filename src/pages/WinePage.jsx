@@ -1,9 +1,11 @@
-import WineList from "../components/WineList";
+import WineContainer from "../components/WineContainer";
 
 const WinePage = () => {
-  return <div>
-    <WineList />
-  </div>;
+  return (
+    <div>
+      <WineContainer />
+    </div>
+  );
 };
 
 export default WinePage;
