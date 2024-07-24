@@ -1,10 +1,14 @@
 import WinePage from "./pages/WinePage";
+import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
 
 const App = () => {
   return (
-    <div>
-      <WinePage />
-    </div>
+    <MantineProvider>
+      <div>
+        <WinePage />
+      </div>
+    </MantineProvider>
   );
 }
 
