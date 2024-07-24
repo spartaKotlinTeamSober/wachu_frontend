@@ -1,4 +1,6 @@
-const WineList = ({ wines }) => {
+import { Wine } from "../models/Wine";
+
+const WineList = ({ wines }: { wines: Wine[] }) => {
   return (
     <div>
       <ul>

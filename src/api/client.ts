@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 
-export const wachuApiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_ENDPOINT,
+export const wachuApiClient: AxiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_ENDPOINT as string,
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
