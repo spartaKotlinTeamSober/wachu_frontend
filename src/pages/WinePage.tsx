@@ -1,10 +1,11 @@
+import DefaultLayout from "../components/common/DefaultLayout";
 import WineContainer from "../components/WineContainer";
 
 const WinePage = () => {
   return (
-    <div>
+    <DefaultLayout>
       <WineContainer />
-    </div>
+    </DefaultLayout>
   );
 };
 
