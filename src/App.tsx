@@ -1,12 +1,12 @@
-import WinePage from "./pages/WinePage.tsx";
 import { MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import LandingPage from "./pages/LandingPage.tsx";
 
 function App() {
   return (
     <MantineProvider>
       <div>
-        <WinePage />
+        <LandingPage />
       </div>
     </MantineProvider>
   );
