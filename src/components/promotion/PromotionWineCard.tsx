@@ -1,4 +1,4 @@
-import { Card, Text, Group, useMantineTheme, Button } from "@mantine/core";
+import { Card, Text } from "@mantine/core";
 import classes from "./PromotionWineCard.module.css";
 
 export function PromotionWineCard() {
