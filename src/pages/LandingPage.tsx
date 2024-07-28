@@ -1,12 +1,11 @@
 import DefaultGrid from "../components/common/DefaultGrid";
-import DefaultLayout from "../components/common/DefaultLayout";
 import { Hero } from "../components/landing/Hero";
 import { PromotionWineCard } from "../components/promotion/PromotionWineCard";
 import ReviewCard from "../components/review/ReviewCard";
 
 const LandingPage = () => {
   return (
-    <DefaultLayout>
+    <div>
       <Hero />
       <div style={{ margin: "50px 20px 20px 20px" }}>
         <DefaultGrid>
@@ -22,7 +21,7 @@ const LandingPage = () => {
           <PromotionWineCard />
         </DefaultGrid>
       </div>
-    </DefaultLayout>
+    </div>
   );
 };
 
