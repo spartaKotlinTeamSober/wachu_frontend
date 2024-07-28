@@ -1,7 +1,7 @@
 import WineDetailContainer from "../components/wine/WineDetailContainer";
 
-const WinePage = () => {
+const WineDetailPage = () => {
   return <WineDetailContainer />;
 };
 
-export default WinePage;
+export default WineDetailPage;

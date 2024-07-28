@@ -4,6 +4,7 @@ import RootLayout from "./pages/layout/RootLayout";
 import LoginPage from "./pages/LoginPage";
 import LoginLayout from "./pages/layout/LoginLayout";
 import WinePage from "./pages/WinePage";
+import WineDetailPage from "./pages/WineDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "wines/:id",
-        element: <WinePage />,
+        element: <WineDetailPage />,
       },
     ],
   },
