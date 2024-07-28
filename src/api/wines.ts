@@ -1,5 +1,6 @@
 import { Wine } from "../models/Wine";
 import { wachuApiClient } from "./client";
+import { WineApiResponse } from "./response/WinesApiResponse";
 
 interface WinePaginationParams {
   query?: string;
@@ -19,16 +20,16 @@ export const getWines = async ({
   size = 10,
   sort = "",
   sort_direction = "asc",
-}: WinePaginationParams = {}): Promise<Wine[]> => {
+}: WinePaginationParams = {}): Promise<WineApiResponse> => {
   try {
-    const response = await wachuApiClient.get("/v1/wines", {
+    const response = await wachuApiClient.get<WineApiResponse>("/v1/wines", {
       params: { query, page, size, sort, sort_direction },
     });
 
     return response.data;
   } catch (error) {
     console.error(error);
-    return [];
+    throw new Error("Failed to fetch wines");
   }
 };
 
