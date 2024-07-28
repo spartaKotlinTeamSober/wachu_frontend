@@ -33,20 +33,20 @@ export const getWines = async ({
   }
 };
 
-export const getWine = async (id: number): Promise<Wine | null> => {
+export const getWine = async (id: string): Promise<Wine> => {
   try {
     const response = await wachuApiClient.get(`/v1/wines/${id}`);
 
     return response.data;
   } catch (error) {
     console.error(error);
-    return null;
+    throw new Error("Failed to fetch wine");
   }
 };
 
 export const compareWine = async (
-  firstWineId: number,
-  secondWineId: number
+  firstWineId: string,
+  secondWineId: string
 ): Promise<any> => {
   try {
     const response = await wachuApiClient.get(

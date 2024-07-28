@@ -1,7 +1,7 @@
 import { Title, Text, Container, Button, Overlay } from "@mantine/core";
-import classes from "./Hero.module.css";
+import classes from "./LandingHero.module.css";
 
-export function Hero() {
+export function LandingHero() {
   return (
     <div className={classes.wrapper}>
       <Overlay color="#000" opacity={0.65} zIndex={1} />

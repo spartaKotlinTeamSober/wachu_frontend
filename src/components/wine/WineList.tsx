@@ -1,9 +1,8 @@
-import { Wine } from "../models/Wine";
-import DefaultGrid from "./common/DefaultGrid";
-import WineCard from "./wine/WineCard";
+import { Wine } from "../../models/Wine";
+import DefaultGrid from "../common/DefaultGrid";
+import WineCard from "./WineCard";
 
 const WineList = ({ wines }: { wines: Wine[] }) => {
-
   return (
     <div style={{ width: "90%", margin: "30px auto" }}>
       <DefaultGrid>
