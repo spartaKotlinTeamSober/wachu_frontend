@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getWines } from "../api/wines";
+import { getWines } from "../../api/wines";
 import WineList from "./WineList";
-import { Wine } from "../models/Wine";
+import { Wine } from "../../models/Wine";
 import { Pagination } from "@mantine/core";
 
 const WineContainer = () => {

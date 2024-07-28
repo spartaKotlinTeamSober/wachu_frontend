@@ -1,7 +1,6 @@
 import { Group, rem } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import classes from "./Header.module.css";
-import { useModal } from "../../wine/\bModalConext";
 import WineModal from "../../wine/WineModal";
 import { useState } from "react";
 
@@ -47,7 +46,11 @@ export function Header() {
             style={{ width: rem(16), height: rem(16) }}
             stroke={1.5}
           />
-          <WineModal opened={modalOpened} closeModal={closeModal} onSelected={wineDetails} />
+          <WineModal
+            opened={modalOpened}
+            closeModal={closeModal}
+            onSelected={wineDetails}
+          />
         </Group>
       </div>
     </header>
