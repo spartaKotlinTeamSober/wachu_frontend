@@ -10,7 +10,6 @@ const WineDetailContainer = () => {
 
   const fetchWine = async () => {
     const wineResponse = await getWine(wineId);
-    console.log("🚀 ~ fetchWine ~ wineResponse:", wineResponse);
     setWine(wineResponse);
   };
 

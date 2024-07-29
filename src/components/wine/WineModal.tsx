@@ -46,6 +46,11 @@ const WineModal: React.FC<WineModalProps> = ({
     onSelected(wineId);
   };
 
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+    setShouldFetch(true);
+  };
+
   useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
@@ -79,7 +84,7 @@ const WineModal: React.FC<WineModalProps> = ({
             ))}
           </DefaultGrid>
           <Pagination
-            onChange={setPage}
+            onChange={handlePageChange}
             total={totalPages}
             style={{
               marginTop: "20px",

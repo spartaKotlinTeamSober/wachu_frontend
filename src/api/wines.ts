@@ -2,28 +2,38 @@ import { Wine } from "../models/Wine";
 import { wachuApiClient } from "./client";
 import { WineApiResponse } from "./response/WinesApiResponse";
 
-interface WinePaginationParams {
-  query?: string;
-  page?: number;
-  size?: number;
-  sort?: string;
-  sort_direction?: "asc" | "desc";
-}
-
 interface RecommendWineRequest {
   preferWineId: number;
 }
 
 export const getWines = async ({
   query = "",
+  price = undefined,
+  sweetness = undefined,
+  acidity = undefined,
+  body = undefined,
+  tannin = undefined,
+  type = undefined,
   page = 0,
   size = 10,
   sort = "",
   sort_direction = "asc",
-}: WinePaginationParams = {}): Promise<WineApiResponse> => {
+} = {}): Promise<WineApiResponse> => {
   try {
     const response = await wachuApiClient.get<WineApiResponse>("/v1/wines", {
-      params: { query, page, size, sort, sort_direction },
+      params: {
+        query,
+        price,
+        sweetness,
+        acidity,
+        body,
+        tannin,
+        type,
+        page,
+        size,
+        sort,
+        sort_direction,
+      },
     });
 
     return response.data;
