@@ -3,7 +3,7 @@ import { wachuApiClient } from "./client";
 import { WineApiResponse } from "./response/WinesApiResponse";
 
 interface RecommendWineRequest {
-  preferWineId: number;
+  preferWineId: string;
 }
 
 export const getWines = async ({
@@ -70,18 +70,16 @@ export const compareWine = async (
   }
 };
 
-export const recommendeWine = async (
-  recommendWineRequest: RecommendWineRequest
-): Promise<any> => {
+export const recommendeWine = async (preferWineId: string): Promise<Wine[]> => {
   try {
     const response = await wachuApiClient.get(`/v1/wines/recommend`, {
-      data: recommendWineRequest,
+      params: preferWineId,
     });
 
     return response.data;
   } catch (error) {
     console.error(error);
-    return null;
+    throw new Error("Failed to fetch recommend wines");
   }
 };
 
