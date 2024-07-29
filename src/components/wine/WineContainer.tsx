@@ -1,30 +1,76 @@
 import { useEffect, useState } from "react";
 import { getWines } from "../../api/wines";
 import WineList from "./WineList";
-import { Wine } from "../../models/Wine";
+import { Wine, WineType } from "../../models/Wine";
 import { Pagination } from "@mantine/core";
+import SearchBar from "../common/SearchBar";
+import WineFilter from "./WineFilter";
 
 const WineContainer = () => {
   const [wines, setWines] = useState<Wine[]>([]);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const [query, setQuery] = useState<string>("");
+  const [shouldFetch, setShouldFetch] = useState<boolean>(true);
+
+  const [price, setPrice] = useState<number>();
+  const [sweetness, setSweetness] = useState<number[]>();
+  const [acidity, setAcidity] = useState<number[]>();
+  const [body, setBody] = useState<number[]>();
+  const [tannin, setTannin] = useState<number[]>();
+  const [type, setType] = useState<WineType>();
 
   const fetchWines = async () => {
-    const winesResponse = await getWines({ page: page - 1, size: 9 });
+    const winesResponse = await getWines({
+      query: query,
+      price: price,
+      sweetness: sweetness,
+      acidity: acidity,
+      body: body,
+      tannin: tannin,
+      type: type,
+      page: page - 1,
+      size: 9,
+    });
 
     setWines(winesResponse.content);
     setTotalPages(winesResponse.totalPages);
   };
 
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+    setShouldFetch(true);
+  };
+
+  const handleSearch = (query: string) => {
+    setQuery(query);
+    setPage(1);
+    setShouldFetch(true);
+  };
+
   useEffect(() => {
-    fetchWines();
-  }, [page]);
+    if (shouldFetch) {
+      fetchWines();
+      setShouldFetch(false);
+    }
+  }, [shouldFetch]);
 
   return (
-    <div>
+    <div style={{ margin: "20px 50px 20px 50px" }}>
+      <div>
+        <SearchBar onSearch={handleSearch} />
+      </div>
+      <WineFilter
+        onPriceChanged={setPrice}
+        onSweetnessChanged={setSweetness}
+        onAcidityChanged={setAcidity}
+        onBodyChanged={setBody}
+        onTanninChanged={setTannin}
+        onTypeChanged={setType}
+      />
       <WineList wines={wines} />
       <Pagination
-        onChange={setPage}
+        onChange={handlePageChange}
         total={totalPages}
         style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}
       />
