@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import LoginLayout from "./pages/layout/LoginLayout";
 import WinePage from "./pages/WinePage";
 import WineDetailPage from "./pages/WineDetailPage";
+import WineRecommendPage from "./pages/WineRecommendPage";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
         path: "wines/:id",
         element: <WineDetailPage />,
       },
+      {
+        path: "wines/recommend",
+        element: <WineRecommendPage />,
+      }
     ],
   },
   {
