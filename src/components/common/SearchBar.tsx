@@ -14,7 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <Flex style={{ width: "100%" }} align="center" gap="md">
+    <Flex align="center" gap="md">
       <TextInput
         placeholder="Search..."
         value={query}

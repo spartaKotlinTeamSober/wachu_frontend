@@ -6,6 +6,7 @@ import LoginLayout from "./pages/layout/LoginLayout";
 import WinePage from "./pages/WinePage";
 import WineDetailPage from "./pages/WineDetailPage";
 import WineRecommendPage from "./pages/WineRecommendPage";
+import WineComparePage from "./pages/WineComparePage";
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ export const router = createBrowserRouter([
       {
         path: "wines/recommend",
         element: <WineRecommendPage />,
-      }
+      },
+      {
+        path: "wines/compare",
+        element: <WineComparePage />,
+      },
     ],
   },
   {
