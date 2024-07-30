@@ -54,19 +54,18 @@ export const getWine = async (id: string): Promise<Wine> => {
   }
 };
 
-export const compareWine = async (
-  firstWineId: string,
-  secondWineId: string
-): Promise<any> => {
+export const compareWine = async (wineId: string[]): Promise<Wine[]> => {
   try {
-    const response = await wachuApiClient.get(
-      `/v1/wines/compare/?wineId=${firstWineId}&wineId=${secondWineId}`
-    );
+    const response = await wachuApiClient.get(`/v1/wines/comparison`, {
+      params: {
+        wineId: wineId,
+      },
+    });
 
     return response.data;
   } catch (error) {
     console.error(error);
-    return null;
+    throw new Error("Failed to fetch comparison wines");
   }
 };
 
