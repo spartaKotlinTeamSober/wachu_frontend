@@ -12,24 +12,20 @@ export const wachuApiClient: AxiosInstance = axios.create({
   },
 });
 
-// wachuApiClient.interceptors.request.use((config) => {
-//     console.log(config);
-//     // const token = localStorage.getItem("token");
-//     // if (token) {
-//     //     config.headers
-//     //         ? (config.headers.Authorization = `Bearer ${token}`)
-//     //         : (config.headers =
-//     //                 { Authorization: `Bearer ${token}` });
-//     // }
-// });
-
-// wachuApiClient.interceptors.response.use(
-//     (response) => {
-//         console.log(response);
-//         return response;
-//     },
-//     (error) => {
-//         console.log(error);
-//         return Promise.reject(error);
-//     }
-// );
+wachuApiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isAxiosError(error) && error.response) {
+      const errorData = error.response.data;
+      console.error(
+        `Error: ${errorData.message}, Code: ${errorData.errorCode}`
+      );
+      return Promise.reject(new Error(errorData.message));
+    } else {
+      console.error("Unexpected error:", error);
+      return Promise.reject(
+        new Error("Failed to send email code due to an unexpected error")
+      );
+    }
+  }
+);

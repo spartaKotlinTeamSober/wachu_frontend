@@ -20,7 +20,7 @@ export const getWines = async ({
   sort_direction = "asc",
 } = {}): Promise<WineApiResponse> => {
   try {
-    const response = await wachuApiClient.get<WineApiResponse>("/v1/wines", {
+    const response = await wachuApiClient.get<WineApiResponse>("api/v1/wines", {
       params: {
         query,
         price,
@@ -45,7 +45,7 @@ export const getWines = async ({
 
 export const getWine = async (id: string): Promise<Wine> => {
   try {
-    const response = await wachuApiClient.get(`/v1/wines/${id}`);
+    const response = await wachuApiClient.get(`api/v1/wines/${id}`);
 
     return response.data;
   } catch (error) {
@@ -56,7 +56,7 @@ export const getWine = async (id: string): Promise<Wine> => {
 
 export const compareWine = async (wineId: string[]): Promise<Wine[]> => {
   try {
-    const response = await wachuApiClient.get(`/v1/wines/comparison`, {
+    const response = await wachuApiClient.get(`api/v1/wines/comparison`, {
       params: {
         wineId: wineId,
       },
@@ -71,7 +71,7 @@ export const compareWine = async (wineId: string[]): Promise<Wine[]> => {
 
 export const recommendeWine = async (preferWineId: string): Promise<Wine[]> => {
   try {
-    const response = await wachuApiClient.get(`/v1/wines/recommend`, {
+    const response = await wachuApiClient.get(`api/v1/wines/recommend`, {
       params: preferWineId,
     });
 
@@ -94,7 +94,7 @@ export const promotionWines = async ({
   sort = "name",
 }: PromotionWinesParams = {}): Promise<Wine[]> => {
   try {
-    const response = await wachuApiClient.get("/v1/wines/promotion", {
+    const response = await wachuApiClient.get("api/v1/wines/promotion", {
       params: { page, size, sort },
     });
 

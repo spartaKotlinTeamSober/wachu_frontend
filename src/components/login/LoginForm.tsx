@@ -1,36 +1,23 @@
 import { Button, PasswordInput, Stack, TextInput } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { postLogin } from "../../api/auth";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [shouldFetch, setShouldFetch] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
     const { email, password } = data;
 
-    setEmail(email.toString());
-    setPassword(password.toString());
-    setShouldFetch(true);
+    const response = await postLogin(email.toString(), password.toString());
+    localStorage.setItem("token", response.accessToken);
+
+    navigate("/");
   };
-
-  const login = async () => {
-    const response = await postLogin(email, password);
-    console.log("🚀 ~ login ~ response:", response);
-
-    setShouldFetch(false);
-  };
-
-  useEffect(() => {
-    if (shouldFetch) {
-      login();
-    }
-  }, [shouldFetch]);
 
   return (
     <form style={{ width: "30%" }} onSubmit={handleSubmit}>
@@ -48,7 +35,7 @@ const LoginForm = () => {
           fullWidth
           type="button"
           onClick={() => {
-            window.location.href = "/login/sign-up";
+            navigate("/login/sign-up");
           }}
         >
           회원가입

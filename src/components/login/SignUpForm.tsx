@@ -7,10 +7,12 @@ import {
   TextInput,
 } from "@mantine/core";
 import { postEmailCode, postSignUp } from "../../api/auth";
-import { SignUpRequest } from "../../api/request/SignUpRequest";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
+
   const [remainEmailCodeTime, setRemainEmailCodeTime] = useState<number | null>(
     null
   );
@@ -20,20 +22,23 @@ const SignUpForm = () => {
     sendEmailCode(email);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
 
     const { email, nickname, password, confirmPassword, code } = data;
 
-    signUp({
+    const params = {
       email: email.toString(),
       nickname: nickname.toString(),
       password: password.toString(),
       confirmPassword: confirmPassword.toString(),
       code: code.toString(),
-    });
+    };
+
+    const response = await postSignUp(params);
+    console.log("🚀 ~ signUp ~ response:", response);
   };
 
   const sendEmailCode = async (email: string) => {
@@ -44,11 +49,6 @@ const SignUpForm = () => {
       console.error(error);
       alert("인증 코드 발송에 실패했습니다.");
     }
-  };
-
-  const signUp = async (params: SignUpRequest) => {
-    const response = await postSignUp(params);
-    console.log("🚀 ~ signUp ~ response:", response);
   };
 
   useEffect(() => {
@@ -109,7 +109,7 @@ const SignUpForm = () => {
           fullWidth
           type="button"
           onClick={() => {
-            window.location.href = "/login/sign-up";
+            navigate("/login");
           }}
         >
           로그인 화면으로
