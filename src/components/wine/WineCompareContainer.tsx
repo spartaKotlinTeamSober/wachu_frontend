@@ -1,7 +1,7 @@
-import { Button, Grid, GridCol, Text } from "@mantine/core";
-import { Wine, WineType } from "../../models/Wine";
+import { Button, Grid, GridCol } from "@mantine/core";
+import { Wine } from "../../models/Wine";
 import WineDetailCard from "./WineDetailCard";
-import { MouseEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import WineModal from "./WineModal";
 import { compareWine } from "../../api/wines";
 
@@ -36,13 +36,15 @@ const WineCompareContainer = () => {
   };
 
   const compareWines = async () => {
-    const winesResponse = await compareWine([
-      firstWineId.toString(),
-      secondWineId.toString(),
-    ]);
+    if (firstWineId && secondWineId) {
+      const winesResponse = await compareWine([
+        firstWineId.toString(),
+        secondWineId.toString(),
+      ]);
 
-    setFirstWine(winesResponse[0]);
-    setSecondWine(winesResponse[1]);
+      setFirstWine(winesResponse[0]);
+      setSecondWine(winesResponse[1]);
+    }
   };
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getWine, recommendeWine } from "../../api/wines";
+import { getWine, recommendWine } from "../../api/wines";
 import WineList from "./WineList";
 import { Wine } from "../../models/Wine";
 import { Button, Grid, Text } from "@mantine/core";
@@ -26,7 +26,7 @@ const WineRecommendContainer = () => {
   };
 
   const fetchRecommendWine = async () => {
-    const winesResponse = await recommendeWine({ preferWineId: preferWineId });
+    const winesResponse = await recommendWine(preferWineId);
 
     setRecommendWines(winesResponse);
   };

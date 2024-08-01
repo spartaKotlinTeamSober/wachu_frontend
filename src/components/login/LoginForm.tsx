@@ -1,7 +1,6 @@
 import { Button, PasswordInput, Stack, TextInput } from "@mantine/core";
-import { useEffect, useState } from "react";
 import { postLogin } from "../../api/auth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const navigate = useNavigate();

@@ -1,19 +1,15 @@
-import { Wine } from "../models/Wine";
+import { Wine, WineType } from "../models/Wine";
 import { wachuApiClient } from "./client";
 import { WineApiResponse } from "./response/WinesApiResponse";
 
-interface RecommendWineRequest {
-  preferWineId: string;
-}
-
 export const getWines = async ({
   query = "",
-  price = undefined,
-  sweetness = undefined,
-  acidity = undefined,
-  body = undefined,
-  tannin = undefined,
-  type = undefined,
+  price = undefined as number | undefined,
+  sweetness = undefined as number[] | undefined,
+  acidity = undefined as number[] | undefined,
+  body = undefined as number[] | undefined,
+  tannin = undefined as number[] | undefined,
+  type = undefined as WineType | undefined,
   page = 0,
   size = 10,
   sort = "",
@@ -43,7 +39,7 @@ export const getWines = async ({
   }
 };
 
-export const getWine = async (id: string): Promise<Wine> => {
+export const getWine = async (id: string | undefined): Promise<Wine> => {
   try {
     const response = await wachuApiClient.get(`api/v1/wines/${id}`);
 
@@ -69,7 +65,9 @@ export const compareWine = async (wineId: string[]): Promise<Wine[]> => {
   }
 };
 
-export const recommendeWine = async (preferWineId: string): Promise<Wine[]> => {
+export const recommendWine = async (
+  preferWineId: string | undefined
+): Promise<Wine[]> => {
   try {
     const response = await wachuApiClient.get(`api/v1/wines/recommend`, {
       params: preferWineId,
