@@ -47,7 +47,10 @@ export function Header() {
               key={"/login"}
               href={"/login"}
               className={classes.link}
-              onClick={(event) => event.preventDefault()}
+              onClick={(event) => {
+                event.preventDefault();
+                navigate("/login");
+              }}
             >
               로그인
             </a>
