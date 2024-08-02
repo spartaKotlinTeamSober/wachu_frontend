@@ -6,7 +6,7 @@ const WineDetailCard = ({ wine }: { wine: Wine }) => {
     <Card shadow="sm" padding="lg" style={{ maxWidth: 500, margin: "auto" }}>
       <Card.Section style={{ padding: "1rem 0" }}>
         <Image
-          src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+          src={wine.imageUrl ? wine.imageUrl : "/src/assets/no_image.webp"}
           alt="와인 사진"
           height={160}
         />

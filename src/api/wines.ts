@@ -70,7 +70,9 @@ export const recommendWine = async (
 ): Promise<Wine[]> => {
   try {
     const response = await wachuApiClient.get(`api/v1/wines/recommend`, {
-      params: preferWineId,
+      params: {
+        preferWineId: preferWineId,
+      },
     });
 
     return response.data;

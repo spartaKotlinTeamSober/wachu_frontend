@@ -17,7 +17,7 @@ const WineList = ({ wines }: { wines: Wine[] }) => {
           <WineCard
             key={wine.id}
             imageSrc={
-              "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+              wine.imageUrl ? wine.imageUrl : "/src/assets/no_image.webp"
             }
             wineName={wine.name}
             buttonText={"더 알아보기"}

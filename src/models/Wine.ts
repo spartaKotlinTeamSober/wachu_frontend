@@ -12,6 +12,7 @@ export interface Wine {
   style?: string;
   country?: string;
   region?: string;
+  imageUrl?: string;
 }
 
 export enum WineType {

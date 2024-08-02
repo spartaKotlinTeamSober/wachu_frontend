@@ -75,7 +75,7 @@ const WineModal: React.FC<WineModalProps> = ({
               <WineCard
                 key={wine.id}
                 imageSrc={
-                  "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+                  wine.imageUrl ? wine.imageUrl : "/src/assets/no_image.webp"
                 }
                 wineName={wine.name}
                 buttonText={"선택하기"}
