@@ -16,7 +16,14 @@ export function LandingHero() {
         </Container>
 
         <div className={classes.controls}>
-          <Button className={classes.control} variant="white" size="lg">
+          <Button
+            className={classes.control}
+            variant="white"
+            size="lg"
+            onClick={() => {
+              alert("미구현");
+            }}
+          >
             보러가기
           </Button>
         </div>
