@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getWines } from "../../api/wines";
 import { Wine } from "../../models/Wine";
 import DefaultGrid from "../common/DefaultGrid";
-import { PromotionWineCard } from "../promotion/PromotionWineCard";
+// import { PromotionWineCard } from "../promotion/PromotionWineCard";
 import { LandingHero } from "./LandingHero";
 import WineCard from "../wine/WineCard";
 import { useNavigate } from "react-router-dom";
@@ -47,13 +47,13 @@ const LandingContainer = () => {
           ))}
         </DefaultGrid>
       </div>
-      <div style={{ margin: "50px 20px 20px 20px" }}>
+      {/* <div style={{ margin: "50px 20px 20px 20px" }}>
         <DefaultGrid>
           <PromotionWineCard />
           <PromotionWineCard />
           <PromotionWineCard />
         </DefaultGrid>
-      </div>
+      </div> */}
     </div>
   );
 };
