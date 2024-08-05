@@ -1,5 +1,5 @@
 // ModalComponent.tsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Pagination } from "@mantine/core";
 import DefaultGrid from "../common/DefaultGrid";
 import WineCard from "./WineCard";
@@ -23,7 +23,6 @@ const WineModal: React.FC<WineModalProps> = ({
   const [totalPages, setTotalPages] = useState<number>(1);
   const [query, setQuery] = useState<string>("");
   const [shouldFetch, setShouldFetch] = useState<boolean>(false);
-  const isFirstRender = useRef(true);
 
   const fetchWines = async () => {
     const winesResponse = await getWines({
@@ -52,16 +51,17 @@ const WineModal: React.FC<WineModalProps> = ({
   };
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
+    if (opened) {
+      fetchWines();
     }
+  }, [opened]);
 
+  useEffect(() => {
     if (shouldFetch) {
       fetchWines();
       setShouldFetch(false);
     }
-  }, [page, query]);
+  }, [shouldFetch]);
 
   return (
     <div>
