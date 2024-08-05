@@ -13,7 +13,7 @@ const LoginForm = () => {
     const { email, password } = data;
 
     const response = await postLogin(email.toString(), password.toString());
-    localStorage.setItem("token", response.accessToken);
+    localStorage.setItem("token", response);
 
     navigate("/");
   };
