@@ -22,7 +22,6 @@ export const postLogin = async (
 export const postSignUp = async (
   request: SignUpRequest
 ): Promise<MemberApiResponse> => {
-  console.log("🚀 ~ request:", request);
   try {
     const response = await wachuApiClient.post(`/auth/sign-up`, {
       email: request.email,
@@ -46,5 +45,29 @@ export const postEmailCode = async (email: string): Promise<void> => {
   } catch (error) {
     console.error(error);
     throw new Error("Failed to send email code");
+  }
+};
+
+export const postKakaoLogin = async (): Promise<string> => {
+  try {
+    const response = await wachuApiClient.get(`/oauth2/login/kakao`);
+
+    console.log("🚀 ~ postKakaoLogin ~ response:", response);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to login with Kakao");
+  }
+};
+
+export const postNaverLogin = async (): Promise<string> => {
+  try {
+    const response = await wachuApiClient.get(`/oauth2/login/naver`);
+
+    console.log("🚀 ~ postNaverLogin ~ response:", response);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to login with Naver");
   }
 };
