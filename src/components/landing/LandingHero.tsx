@@ -1,7 +1,10 @@
 import { Title, Text, Container, Button, Overlay } from "@mantine/core";
 import classes from "./LandingHero.module.css";
+import { useNavigate } from "react-router-dom";
 
 export function LandingHero() {
+  const navigate = useNavigate();
+
   return (
     <div className={classes.wrapper}>
       <Overlay color="#000" opacity={0.65} zIndex={1} />
@@ -21,7 +24,7 @@ export function LandingHero() {
             variant="white"
             size="lg"
             onClick={() => {
-              alert("미구현");
+              navigate("/wines/promotion");
             }}
           >
             보러가기
