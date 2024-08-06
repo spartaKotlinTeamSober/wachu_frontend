@@ -2,6 +2,7 @@ import { Group, rem } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import classes from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
+import { postLogout } from "../../../api/auth";
 
 const links = [
   { link: "/wines/recommend", label: "추천받기" },
@@ -24,6 +25,12 @@ export function Header() {
       {link.label}
     </a>
   ));
+
+  const handleLogout = async () => {
+    await postLogout();
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   return (
     <header className={classes.header}>
@@ -53,6 +60,19 @@ export function Header() {
               }}
             >
               로그인
+            </a>
+          )}
+          {token && (
+            <a
+              key={"/logout"}
+              href={"/logout"}
+              className={classes.link}
+              onClick={(event) => {
+                event.preventDefault();
+                handleLogout();
+              }}
+            >
+              로그아웃
             </a>
           )}
           <IconSearch

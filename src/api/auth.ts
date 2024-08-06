@@ -38,6 +38,15 @@ export const postSignUp = async (
   }
 };
 
+export const postLogout = async (): Promise<void> => {
+  try {
+    await wachuApiClient.post(`/auth/logout`);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to logout");
+  }
+};
+
 export const postEmailCode = async (email: string): Promise<void> => {
   try {
     const data = { email: email };
@@ -52,7 +61,6 @@ export const postKakaoLogin = async (): Promise<string> => {
   try {
     const response = await wachuApiClient.get(`/oauth2/login/kakao`);
 
-    console.log("🚀 ~ postKakaoLogin ~ response:", response);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -64,7 +72,6 @@ export const postNaverLogin = async (): Promise<string> => {
   try {
     const response = await wachuApiClient.get(`/oauth2/login/naver`);
 
-    console.log("🚀 ~ postNaverLogin ~ response:", response);
     return response.data;
   } catch (error) {
     console.error(error);

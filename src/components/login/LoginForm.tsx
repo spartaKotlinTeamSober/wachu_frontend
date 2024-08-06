@@ -20,14 +20,12 @@ const LoginForm = () => {
 
   const handleKakaoLogin = async () => {
     const response = await postKakaoLogin();
-    console.log("🚀 ~ handleKakaoLogin ~ response:", response);
 
     window.location.href = response;
   };
 
   const handleNaverLogin = async () => {
     const response = await postNaverLogin();
-    console.log("🚀 ~ handleNaverLogin ~ response:", response);
 
     window.location.href = response;
   };
@@ -90,16 +88,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-function createStyles(
-  arg0: (theme: any) => {
-    button: {
-      "&:hover": {
-        backgroundColor: string; // hover 시 배경색을 변경하지 않음
-        color: string; // hover 시 텍스트 색상을 변경하지 않음
-        boxShadow: string;
-      };
-    };
-  }
-) {
-  throw new Error("Function not implemented.");
-}
