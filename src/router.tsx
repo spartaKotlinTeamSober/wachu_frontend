@@ -9,6 +9,7 @@ import WineRecommendPage from "./pages/WineRecommendPage";
 import WineComparePage from "./pages/WineComparePage";
 import SignUpPage from "./pages/SignUpPage";
 import OAuthRedirectPage from "./pages/OAuthRedirectPage";
+import WinePromotionPage from "./pages/WinePromotionPage";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "wines/compare",
         element: <WineComparePage />,
+      },
+      {
+        path: "wines/promotion",
+        element: <WinePromotionPage />,
       },
     ],
   },

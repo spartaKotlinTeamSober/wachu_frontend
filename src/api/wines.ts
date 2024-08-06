@@ -82,21 +82,9 @@ export const recommendWine = async (
   }
 };
 
-interface PromotionWinesParams {
-  page?: number;
-  size?: number;
-  sort?: string;
-}
-
-export const promotionWines = async ({
-  page = 1,
-  size = 10,
-  sort = "name",
-}: PromotionWinesParams = {}): Promise<Wine[]> => {
+export const promotionWines = async (): Promise<Wine[]> => {
   try {
-    const response = await wachuApiClient.get("api/v1/wines/promotion", {
-      params: { page, size, sort },
-    });
+    const response = await wachuApiClient.get("api/v1/wines/promotion");
 
     return response.data;
   } catch (error) {
