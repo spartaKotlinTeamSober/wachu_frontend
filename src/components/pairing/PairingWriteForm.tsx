@@ -76,7 +76,7 @@ const PairingWriteForm = () => {
 
       console.log("🚀 ~ createPairing ~ response:", response);
 
-      navigate("/pairing");
+      navigate("/pairing/" + response.id);
     } else {
       alert("와인을 선택해주세요.");
       setWine(undefined);

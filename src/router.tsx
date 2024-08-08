@@ -12,6 +12,7 @@ import OAuthRedirectPage from "./pages/OAuthRedirectPage";
 import WinePromotionPage from "./pages/WinePromotionPage";
 import PairingPage from "./pages/PairingPage";
 import PairingWritePage from "./pages/PairingWritePage";
+import PairingDetailPage from "./pages/PairingDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "pairing/write",
         element: <PairingWritePage />,
+      },
+      {
+        path: "pairing/:id",
+        element: <PairingDetailPage />,
       },
     ],
   },
