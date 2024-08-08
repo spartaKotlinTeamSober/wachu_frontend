@@ -56,12 +56,10 @@ export const postPairing = async (
     const response = await wachuApiClient.post("api/v1/pairings", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
-    console.log("🚀 ~ response:", response);
 
     return response.data;
   } catch (error) {
     console.error(error);
     throw new Error("Failed to create pairing");
-  }
-    
+  } 
 };

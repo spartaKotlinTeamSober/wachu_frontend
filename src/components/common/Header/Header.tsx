@@ -7,7 +7,7 @@ import { postLogout } from "../../../api/auth";
 const links = [
   { link: "/wines/recommend", label: "추천받기" },
   { link: "/wines/compare", label: "비교하기" },
-  // { link: "/", label: "리뷰" },
+  { link: "/review", label: "리뷰" },
   { link: "/pairing", label: "페어링" },
 ];
 
