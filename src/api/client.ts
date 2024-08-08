@@ -20,6 +20,13 @@ wachuApiClient.interceptors.request.use(
     ) {
       config.withCredentials = true;
     }
+
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+
     return config;
   },
   (error) => {
@@ -40,13 +47,14 @@ wachuApiClient.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const response = await axios.post(
-          `${import.meta.env.VITE_API_ENDPOINT}/auth/refresh-token`,
+          `${import.meta.env.VITE_API_ENDPOINT}auth/refresh-token`,
           {},
           { withCredentials: true }
         );
 
         if (response.status === 200) {
-          const newAccessToken = response.data.accessToken;
+          const newAccessToken = response.data;
+          console.log("🚀 ~ newAccessToken:", newAccessToken);
           localStorage.setItem("token", newAccessToken);
 
           originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
@@ -57,11 +65,12 @@ wachuApiClient.interceptors.response.use(
         console.error("Refresh token is invalid:", refreshError);
         alert("로그인이 필요합니다.");
         await axios.post(
-          `${import.meta.env.VITE_API_ENDPOINT}/auth/logout`,
+          `${import.meta.env.VITE_API_ENDPOINT}auth/logout`,
           {},
           { withCredentials: true }
         );
         localStorage.removeItem("token");
+        window.location.href = "/login";
         return Promise.reject(refreshError);
       }
     }
