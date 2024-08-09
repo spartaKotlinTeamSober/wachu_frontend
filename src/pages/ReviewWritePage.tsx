@@ -1,5 +1,7 @@
+import ReviewWriteForm from "../components/review/ReviewWriteForm";
+
 const ReviewWritePage = () => {
-  return <div>ReviewWritePage</div>;
+  return <ReviewWriteForm />;
 };
 
 export default ReviewWritePage;

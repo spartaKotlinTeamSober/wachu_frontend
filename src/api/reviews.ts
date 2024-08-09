@@ -32,7 +32,7 @@ export const getReview = async (id: string | undefined): Promise<Review> => {
 
 export const postReview = async (
   request: ReviewCreateRequest,
-  imageFile: File | undefined
+  imageFiles: File[] | undefined
 ): Promise<Review> => {
   try {
     const formData = new FormData();
@@ -50,8 +50,11 @@ export const postReview = async (
         { type: "application/json" }
       )
     );
-    if (imageFile) {
-      formData.append("image", imageFile);
+
+    if (imageFiles && imageFiles.length > 0) {
+      Array.from(imageFiles).forEach((file) => {
+        formData.append("images", file);
+      });
     }
 
     const response = await wachuApiClient.post("api/v1/reviews", formData, {
