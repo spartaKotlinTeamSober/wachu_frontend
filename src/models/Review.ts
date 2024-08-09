@@ -12,6 +12,7 @@ export interface Review {
 }
 
 export interface ReviewMultiMedia {
+  id: number;
   reviewId: number;
   mediaUrl: string;
   mediaType: string;

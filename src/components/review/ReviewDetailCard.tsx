@@ -7,7 +7,7 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
     <Card shadow="sm" padding="lg" style={{ maxWidth: 500, margin: "auto" }}>
       <Card.Section style={{ padding: "1rem 0" }}>
         {review.mediaList.map((media) => (
-          <div>
+          <div key={media.id}>
             <Image src={media.mediaUrl} alt="리뷰 사진" height={500} />
           </div>
         ))}

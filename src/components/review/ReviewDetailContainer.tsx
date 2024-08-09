@@ -7,6 +7,7 @@ import ReviewDetailCard from "./ReviewDetailCard";
 const ReviewDetailContainer = () => {
   const [review, setReview] = useState<Review>();
   const reviewId = useParams<{ id: string }>().id;
+  const [shouldFetch, setShouldFetch] = useState(true);
 
   const fetchReview = async () => {
     const reviewResponse = await getReview(reviewId);
@@ -14,8 +15,11 @@ const ReviewDetailContainer = () => {
   };
 
   useEffect(() => {
-    fetchReview();
-  }, [reviewId]);
+    if (shouldFetch) {
+      setShouldFetch(false);
+      fetchReview();
+    }
+  }, [shouldFetch]);
 
   return (
     <div
