@@ -13,6 +13,9 @@ import WinePromotionPage from "./pages/WinePromotionPage";
 import PairingPage from "./pages/PairingPage";
 import PairingWritePage from "./pages/PairingWritePage";
 import PairingDetailPage from "./pages/PairingDetailPage";
+import ReviewPage from "./pages/ReviewPage";
+import ReviewWritePage from "./pages/ReviewWritePage";
+import ReviewDetailPage from "./pages/ReviewDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +57,18 @@ export const router = createBrowserRouter([
       {
         path: "pairing/:id",
         element: <PairingDetailPage />,
+      },
+      {
+        path: "review",
+        element: <ReviewPage />,
+      },
+      {
+        path: "review/write",
+        element: <ReviewWritePage />,
+      },
+      {
+        path: "review/:id",
+        element: <ReviewDetailPage />,
       },
     ],
   },
