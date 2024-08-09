@@ -34,6 +34,7 @@ const ReviewWriteForm = () => {
     const data = Object.fromEntries(formData.entries());
 
     const { title, description } = data;
+    console.log("🚀 ~ handleSubmit ~ description:", description);
 
     if (!wine) {
       alert("와인을 선택해주세요.");

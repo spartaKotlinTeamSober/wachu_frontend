@@ -1,5 +1,7 @@
+import ReviewDetailContainer from "../components/review/ReviewDetailContainer";
+
 const ReviewDetailPage = () => {
-  return <div>ReviewDetailPage</div>;
+  return <ReviewDetailContainer />;
 };
 
 export default ReviewDetailPage;
