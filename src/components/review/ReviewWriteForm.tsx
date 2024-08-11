@@ -115,7 +115,7 @@ const ReviewWriteForm = () => {
         flexDirection: "column",
       }}
     >
-      <form style={{ marginTop: "20px", width: "40%" }} onSubmit={handleSubmit}>
+      <form style={{ marginTop: "20px", width: "50%" }} onSubmit={handleSubmit}>
         <div
           style={{
             border: "1px dashed var(--mantine-color-dimmed)",
@@ -131,7 +131,7 @@ const ReviewWriteForm = () => {
             <Group
               justify="center"
               gap="xl"
-              mih={100}
+              mih={200}
               style={{ pointerEvents: "none" }}
             >
               <Dropzone.Accept>
