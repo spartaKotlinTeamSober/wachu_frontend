@@ -17,7 +17,15 @@ const WineCard: React.FC<WineCardProps> = ({
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
-        <Image src={imageSrc} height={480} alt={wineName} />
+        <Image
+          src={imageSrc}
+          alt={wineName}
+          style={{
+            maxWidth: "100%",
+            maxHeight: "400px",
+            objectFit: "cover",
+          }}
+        />
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">
