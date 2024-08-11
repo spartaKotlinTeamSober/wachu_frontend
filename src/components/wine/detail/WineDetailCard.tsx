@@ -1,5 +1,5 @@
 import { Card, Image, Text, Grid } from "@mantine/core";
-import { Wine } from "../../models/Wine";
+import { Wine } from "../../../models/Wine";
 
 const WineDetailCard = ({ wine }: { wine: Wine }) => {
   return (

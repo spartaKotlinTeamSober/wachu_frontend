@@ -1,4 +1,4 @@
-import { Group, Menu, rem, Text } from "@mantine/core";
+import { Group, Menu, rem } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import classes from "./Header.module.css";
 import { useNavigate } from "react-router-dom";

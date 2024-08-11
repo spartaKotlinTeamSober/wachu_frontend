@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Wine } from "../../models/Wine";
+import { Wine } from "../../../models/Wine";
 import WineDetailCard from "./WineDetailCard";
-import { getWine } from "../../api/wines";
+import { getWine } from "../../../api/wines";
 import { useParams } from "react-router-dom";
 
 const WineDetailContainer = () => {

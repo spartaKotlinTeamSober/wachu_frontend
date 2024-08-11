@@ -1,4 +1,4 @@
-import WineDetailContainer from "../components/wine/WineDetailContainer";
+import WineDetailContainer from "../components/wine/detail/WineDetailContainer";
 
 const WineDetailPage = () => {
   return <WineDetailContainer />;

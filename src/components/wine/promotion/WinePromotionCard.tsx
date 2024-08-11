@@ -1,7 +1,7 @@
 import { Card, Text } from "@mantine/core";
-import classes from "./PromotionWineCard.module.css";
+import classes from "./WinePromotionCard.module.css";
 
-export function PromotionWineCard() {
+export function WinePromotionCard() {
   return (
     <Card
       p="lg"
