@@ -11,7 +11,15 @@ const PairingCard: React.FC<PairingCardProps> = ({ pairing, onSelected }) => {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
-        <Image src={pairing.photoUrl} height={300} alt={"페어링 포토"} />
+        <Image
+          src={pairing.photoUrl}
+          alt={"페어링 포토"}
+          style={{
+            maxWidth: "100%",
+            maxHeight: "400px",
+            objectFit: "cover",
+          }}
+        />
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">

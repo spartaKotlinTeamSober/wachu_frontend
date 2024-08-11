@@ -4,14 +4,18 @@ import dayjs from "dayjs";
 
 const PairingDetailCard = ({ pairing }: { pairing: Pairing }) => {
   return (
-    <Card shadow="sm" padding="lg" style={{ maxWidth: 500, margin: "auto" }}>
+    <Card shadow="sm" padding="lg" style={{ maxWidth: "50%", margin: "auto" }}>
       <Card.Section style={{ padding: "1rem 0" }}>
         <Image
           src={
             pairing.photoUrl ? pairing.photoUrl : "/src/assets/no_image.webp"
           }
           alt="페어링 사진"
-          height={500}
+          style={{
+            maxWidth: "100%",
+            maxHeight: "500px",
+            objectFit: "cover",
+          }}
         />
       </Card.Section>
 

@@ -32,7 +32,7 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
               style={{
                 maxWidth: "100%",
                 maxHeight: "700px",
-                objectFit: "contain",
+                objectFit: "cover",
               }}
             />
           </div>
