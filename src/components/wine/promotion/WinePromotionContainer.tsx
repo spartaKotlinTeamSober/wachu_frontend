@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { promotionWines } from "../../api/wines";
-import { Wine } from "../../models/Wine";
-import WineList from "./WineList";
 import { Text } from "@mantine/core";
+import { promotionWines } from "../../../api/wines";
+import { Wine } from "../../../models/Wine";
+import WineList from "../WineList";
 
 const WinePromotionContainer = () => {
   const [wines, setWines] = useState<Wine[]>([]);

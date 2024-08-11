@@ -1,9 +1,9 @@
 import { Button, Grid, GridCol } from "@mantine/core";
-import { Wine } from "../../models/Wine";
-import WineDetailCard from "./WineDetailCard";
-import { useEffect, useState } from "react";
-import WineModal from "./WineModal";
-import { compareWine } from "../../api/wines";
+import { useState, useEffect } from "react";
+import { compareWine } from "../../../api/wines";
+import { Wine } from "../../../models/Wine";
+import WineDetailCard from "../detail/WineDetailCard";
+import WineModal from "../WineModal";
 
 const WineCompareContainer = () => {
   const [firstWine, setFirstWine] = useState<Wine>();

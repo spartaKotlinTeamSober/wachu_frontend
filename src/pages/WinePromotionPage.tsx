@@ -1,4 +1,4 @@
-import WinePromotionContainer from "../components/wine/WinePromotionContainer";
+import WinePromotionContainer from "../components/wine/promotion/WinePromotionContainer";
 
 const WinePromotionPage = () => {
   return <WinePromotionContainer />;

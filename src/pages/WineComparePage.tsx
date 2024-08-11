@@ -1,4 +1,4 @@
-import WineCompareContainer from "../components/wine/WineCompareContainer";
+import WineCompareContainer from "../components/wine/compare/WineCompareContainer";
 
 const WineComparePage = () => {
   return <WineCompareContainer />;

@@ -1,9 +1,9 @@
+import { Grid, Button, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { getWine, recommendWine } from "../../api/wines";
-import WineList from "./WineList";
-import { Wine } from "../../models/Wine";
-import { Button, Grid, Text } from "@mantine/core";
-import WineModal from "./WineModal";
+import { getWine, recommendWine } from "../../../api/wines";
+import { Wine } from "../../../models/Wine";
+import WineList from "../WineList";
+import WineModal from "../WineModal";
 
 const WineRecommendContainer = () => {
   const [preferWine, setPreferWine] = useState<Wine>();
