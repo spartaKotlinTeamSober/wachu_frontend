@@ -1,10 +1,28 @@
-import { Card, Grid, Image, Text } from "@mantine/core";
+import { Button, Card, Grid, Image, Text } from "@mantine/core";
 import dayjs from "dayjs";
 import { Review } from "../../models/Review";
+import { jwtDecode } from "jwt-decode";
+import { deleteReview } from "../../api/reviews";
+import { useNavigate } from "react-router-dom";
 
 const ReviewDetailCard = ({ review }: { review: Review }) => {
+  const token = localStorage.getItem("token") ?? "";
+  const claims = jwtDecode(token);
+  const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    const response = await deleteReview(review.id.toString());
+
+    if (response === 204) {
+      alert("리뷰가 삭제되었습니다.");
+      navigate("/review");
+    } else {
+      alert("리뷰 삭제에 실패했습니다.");
+    }
+  };
+
   return (
-    <Card shadow="sm" padding="lg" style={{ maxWidth: 500, margin: "auto" }}>
+    <Card shadow="sm" padding="lg" style={{ maxWidth: "90%", margin: "auto" }}>
       <Card.Section style={{ padding: "1rem 0" }}>
         {review.mediaList.map((media) => (
           <div key={media.id}>
@@ -34,6 +52,15 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
           </Text>
         </Grid.Col>
       </Grid>
+      {claims.sub === review.memberId.toString() && (
+        <Button
+          color="red"
+          style={{ marginLeft: "auto", marginRight: "0px", width: "100px" }}
+          onClick={handleDelete}
+        >
+          삭제
+        </Button>
+      )}
     </Card>
   );
 };
