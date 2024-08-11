@@ -16,6 +16,7 @@ import PairingDetailPage from "./pages/PairingDetailPage";
 import ReviewPage from "./pages/ReviewPage";
 import ReviewWritePage from "./pages/ReviewWritePage";
 import ReviewDetailPage from "./pages/ReviewDetailPage";
+import ProfilePage from "./pages/ProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "",
         element: <LandingPage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
       },
       {
         path: "wines",

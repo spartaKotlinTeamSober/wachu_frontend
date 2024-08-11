@@ -1,4 +1,4 @@
-import { Group, rem } from "@mantine/core";
+import { Group, Menu, rem, Text } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import classes from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +32,10 @@ export function Header() {
     navigate("/");
   };
 
+  const handleProfile = () => {
+    navigate("/profile");
+  };
+
   return (
     <header className={classes.header}>
       <div className={classes.inner}>
@@ -63,17 +67,33 @@ export function Header() {
             </a>
           )}
           {token && (
-            <a
-              key={"/logout"}
-              href={"/logout"}
-              className={classes.link}
-              onClick={(event) => {
-                event.preventDefault();
-                handleLogout();
-              }}
-            >
-              로그아웃
-            </a>
+            <Menu trigger="hover" openDelay={100} closeDelay={400}>
+              <Menu.Target>
+                <a className={classes.link}>내 정보</a>
+              </Menu.Target>
+              <Menu.Dropdown>
+                <Menu.Item
+                  key={"/profile"}
+                  className={classes.link}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleProfile();
+                  }}
+                >
+                  프로필
+                </Menu.Item>
+                <Menu.Item
+                  key={"/logout"}
+                  className={classes.link}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    handleLogout();
+                  }}
+                >
+                  로그아웃
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
           )}
           <IconSearch
             onClick={() => navigate("/wines")}
