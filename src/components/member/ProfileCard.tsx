@@ -1,4 +1,4 @@
-import { Card, Group, Image, Text } from "@mantine/core";
+import { Avatar, Card, Group, Image, Paper, Text } from "@mantine/core";
 import { Profile } from "../../models/Profile";
 
 interface ProfileCardProps {
@@ -7,25 +7,26 @@ interface ProfileCardProps {
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
   return (
-    <Card shadow="sm" padding="lg" radius="md" withBorder>
-      <Card.Section>
-        <Image
-          src={profile.profileUrl ?? "assets/no_image.webp"}
-          alt={"프로필 포토"}
-          style={{
-            maxWidth: "100%",
-            maxHeight: "400px",
-            objectFit: "cover",
-          }}
-        />
-      </Card.Section>
-
-      <Group justify="space-between" mt="md" mb="xs">
-        <Text fw={100}>{profile.email}</Text>
-      </Group>
-
-      <Text fw={500}>{profile.nickname}</Text>
-    </Card>
+    <Paper
+      radius="md"
+      withBorder
+      p="lg"
+      bg="var(--mantine-color-body)"
+      style={{ width: "20%", margin: "50px auto" }}
+    >
+      <Avatar
+        src={profile.profileUrl ?? "assets/no_image.webp"}
+        size={120}
+        radius={120}
+        mx="auto"
+      />
+      <Text ta="center" fz="lg" fw={500} mt="md">
+        {profile.email ?? "이메일 정보 없음"}
+      </Text>
+      <Text ta="center" fz="lg" fw={200} mt="md">
+        {profile.nickname ?? "닉네임 정보 없음"}
+      </Text>
+    </Paper>
   );
 };
 
