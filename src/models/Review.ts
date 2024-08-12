@@ -1,9 +1,10 @@
+import { Profile } from "./Profile";
 import { Wine } from "./Wine";
 
 export interface Review {
   id: number;
   wine: Wine;
-  memberId: number;
+  member: Profile;
   title: string;
   description: string;
   score: number;

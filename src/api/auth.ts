@@ -1,6 +1,6 @@
+import { Profile } from "../models/Profile";
 import { wachuApiClient } from "./client";
 import { SignUpRequest } from "./request/SignUpRequest";
-import { MemberApiResponse } from "./response/MemberApiResponse";
 
 export const postLogin = async (
   email: string,
@@ -19,9 +19,7 @@ export const postLogin = async (
   }
 };
 
-export const postSignUp = async (
-  request: SignUpRequest
-): Promise<MemberApiResponse> => {
+export const postSignUp = async (request: SignUpRequest): Promise<Profile> => {
   try {
     const response = await wachuApiClient.post(`/auth/sign-up`, {
       email: request.email,

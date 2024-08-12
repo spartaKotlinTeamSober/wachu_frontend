@@ -38,7 +38,10 @@ const SignUpForm = () => {
     };
 
     const response = await postSignUp(params);
-    console.log("🚀 ~ signUp ~ response:", response);
+
+    if (response) {
+      navigate("/");
+    }
   };
 
   const sendEmailCode = async (email: string) => {

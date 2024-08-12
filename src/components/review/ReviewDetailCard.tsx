@@ -60,7 +60,7 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
           </Text>
         </Grid.Col>
       </Grid>
-      {claims.sub === review.memberId.toString() && (
+      {review.member.id && claims.sub === review.member.id.toString() && (
         <Button
           color="red"
           style={{ marginLeft: "auto", marginRight: "0px", width: "100px" }}
