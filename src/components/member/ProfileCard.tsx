@@ -1,4 +1,4 @@
-import { Avatar, Card, Group, Image, Paper, Text } from "@mantine/core";
+import { Avatar, Paper, Text } from "@mantine/core";
 import { Profile } from "../../models/Profile";
 
 interface ProfileCardProps {
