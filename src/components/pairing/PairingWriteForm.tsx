@@ -74,8 +74,6 @@ const PairingWriteForm = () => {
         files[0]
       );
 
-      console.log("🚀 ~ createPairing ~ response:", response);
-
       navigate("/pairing/" + response.id);
     } else {
       alert("와인을 선택해주세요.");

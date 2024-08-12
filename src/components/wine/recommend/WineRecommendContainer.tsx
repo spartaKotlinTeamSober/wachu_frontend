@@ -37,7 +37,6 @@ const WineRecommendContainer = () => {
   const closeModal = () => setModalOpened(false);
 
   const wineSelected = (wineId: number) => {
-    console.log("🚀 ~ wineSelected ~ wineId:", wineId);
     closeModal();
     setPreferWineId(wineId.toString());
   };

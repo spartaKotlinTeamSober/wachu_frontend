@@ -20,7 +20,6 @@ const PairingContainer = () => {
 
   const fetchPairings = async () => {
     const pairingResponse = await getPairings(page - 1);
-    console.log("🚀 ~ fetchPairings ~ pairingResponse:", pairingResponse);
 
     setPairings(pairingResponse.content);
     setTotalPages(pairingResponse.totalPages);

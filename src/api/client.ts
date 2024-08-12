@@ -54,7 +54,6 @@ wachuApiClient.interceptors.response.use(
 
         if (response.status === 200) {
           const newAccessToken = response.data;
-          console.log("🚀 ~ newAccessToken:", newAccessToken);
           localStorage.setItem("token", newAccessToken);
 
           originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;

@@ -15,8 +15,6 @@ const WineCompareContainer = () => {
   const [modalOpened, setModalOpened] = useState(false);
 
   const openModal = (index: number) => {
-    console.log("🚀 ~ openModal ~ button:", index);
-
     setSelectedIndex(index);
     setModalOpened(true);
   };
