@@ -12,6 +12,7 @@ const PairingContainer = () => {
   const [shouldFetch, setShouldFetch] = useState(true);
 
   const navigate = useNavigate();
+  const token = localStorage.getItem("token") ?? "";
 
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -41,17 +42,19 @@ const PairingContainer = () => {
         flexDirection: "column",
       }}
     >
-      <div style={{ display: "flex", width: "100%", marginTop: "40px" }}>
-        <div style={{ marginLeft: "auto", marginRight: "40px" }}>
-          <Button
-            onClick={() => {
-              navigate("write");
-            }}
-          >
-            작성하기
-          </Button>
+      {token && (
+        <div style={{ display: "flex", width: "100%", marginTop: "40px" }}>
+          <div style={{ marginLeft: "auto", marginRight: "40px" }}>
+            <Button
+              onClick={() => {
+                navigate("write");
+              }}
+            >
+              작성하기
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
       {pairings.length === 0 ? (
         <Text size="xl" fw={700} style={{ marginTop: "60px" }}>
           페어링 게시글이 없습니다
