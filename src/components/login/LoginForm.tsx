@@ -1,5 +1,5 @@
 import { Button, PasswordInput, Stack, TextInput, Image } from "@mantine/core";
-import { postKakaoLogin, postLogin, postNaverLogin } from "../../api/auth";
+import { postKakaoLogin, postLogin } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
@@ -24,11 +24,11 @@ const LoginForm = () => {
     window.location.href = response;
   };
 
-  const handleNaverLogin = async () => {
-    const response = await postNaverLogin();
+  // const handleNaverLogin = async () => {
+  //   const response = await postNaverLogin();
 
-    window.location.href = response;
-  };
+  //   window.location.href = response;
+  // };
 
   const buttonStyles = {
     width: "100%",
@@ -58,12 +58,12 @@ const LoginForm = () => {
         >
           <Image h={35} fit="contain" src="src/assets/kakao_login.png" />
         </button>
-        <button
+        {/* <button
           style={{ ...buttonStyles, backgroundColor: "#03c75a" }}
           onClick={handleNaverLogin}
         >
           <Image h={35} fit="contain" src="src/assets/naver_login.png" />
-        </button>
+        </button> */}
         <Button
           fullWidth
           type="button"
