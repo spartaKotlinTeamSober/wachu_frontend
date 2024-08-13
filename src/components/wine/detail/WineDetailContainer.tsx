@@ -23,7 +23,6 @@ const WineDetailContainer = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
       }}
     >
       {wine && <WineDetailCard wine={wine} />}
