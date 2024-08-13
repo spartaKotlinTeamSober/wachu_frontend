@@ -1,11 +1,4 @@
-import {
-  Button,
-  PasswordInput,
-  Stack,
-  TextInput,
-  Image,
-  Text,
-} from "@mantine/core";
+import { Button, PasswordInput, Stack, TextInput } from "@mantine/core";
 import { postKakaoLogin, postLogin } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 
