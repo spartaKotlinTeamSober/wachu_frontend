@@ -1,4 +1,11 @@
-import { Button, PasswordInput, Stack, TextInput, Image } from "@mantine/core";
+import {
+  Button,
+  PasswordInput,
+  Stack,
+  TextInput,
+  Image,
+  Text,
+} from "@mantine/core";
 import { postKakaoLogin, postLogin } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -52,12 +59,13 @@ const LoginForm = () => {
         <Button fullWidth type="submit">
           로그인
         </Button>
-        <button
+        <Button
           style={{ ...buttonStyles, backgroundColor: "#FEE500" }}
           onClick={handleKakaoLogin}
         >
-          <Image h={35} fit="contain" src="src/assets/kakao_login.png" />
-        </button>
+          {/* <Image h={35} fit="contain" src="src/assets/kakao_login.png" /> */}
+          카카오 로그인
+        </Button>
         {/* <button
           style={{ ...buttonStyles, backgroundColor: "#03c75a" }}
           onClick={handleNaverLogin}
