@@ -32,9 +32,9 @@ const WineDetailCard = ({ wine }: { wine: Wine }) => {
           src={wine.imageUrl ? wine.imageUrl : "/src/assets/no_image.webp"}
           alt="와인 사진"
           style={{
-            maxWidth: "100%",
-            maxHeight: "500px",
-            objectFit: "cover",
+            width: "100%",
+            height: "500px",
+            objectFit: "contain",
           }}
         />
       </Card.Section>
