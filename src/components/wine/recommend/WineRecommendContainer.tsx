@@ -1,14 +1,35 @@
 import { Grid, Button, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { getWine, recommendWine } from "../../../api/wines";
-import { Wine } from "../../../models/Wine";
-import WineList from "../WineList";
+import { Wine, WineType } from "../../../models/Wine";
 import WineModal from "../WineModal";
+import WineRecommendList from "./WineRecommendList";
 
 const WineRecommendContainer = () => {
   const [preferWine, setPreferWine] = useState<Wine>();
   const [preferWineId, setPreferWineId] = useState<string>();
-  const [recommendWines, setRecommendWines] = useState<Wine[]>([]);
+  const [recommendWines, setRecommendWines] = useState<Wine[]>([
+    {
+      id: 0,
+      name: "테스트",
+      sweetness: 0,
+      acidity: 0,
+      body: 0,
+      tannin: 0,
+      wineType: WineType.UNDEFIENED,
+      aroma: "",
+    },
+    {
+      id: 0,
+      name: "테스트22123213213, 321321321",
+      sweetness: 0,
+      acidity: 0,
+      body: 0,
+      tannin: 0,
+      wineType: WineType.UNDEFIENED,
+      aroma: "",
+    },
+  ]);
   const [shouldFetch, setShouldFetch] = useState<boolean>(false);
 
   //   const [price, setPrice] = useState<number>();
@@ -82,7 +103,7 @@ const WineRecommendContainer = () => {
         closeModal={closeModal}
         onSelected={wineSelected}
       />
-      <WineList wines={recommendWines} />
+      <WineRecommendList wines={recommendWines} />
     </div>
   );
 };

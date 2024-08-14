@@ -15,9 +15,9 @@ const PairingCard: React.FC<PairingCardProps> = ({ pairing, onSelected }) => {
           src={pairing.photoUrl}
           alt={"페어링 포토"}
           style={{
-            maxWidth: "100%",
-            maxHeight: "400px",
-            objectFit: "cover",
+            width: "100%",
+            height: "400px",
+            objectFit: "contain",
           }}
         />
       </Card.Section>

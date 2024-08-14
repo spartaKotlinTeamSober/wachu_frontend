@@ -1,17 +1,25 @@
-import React from "react";
-import { Card, Image, Text, Button, Group, Tooltip } from "@mantine/core";
+import {
+  Card,
+  Group,
+  Button,
+  Image,
+  Text,
+  Badge,
+  Tooltip,
+} from "@mantine/core";
+import { Wine } from "../../../models/Wine";
 
-interface WineCardProps {
+interface WineRecommendCardProps {
   imageSrc: string;
-  wineName: string;
-  buttonText?: string;
+  wine: Wine;
+  ranking: number;
   onSelected?: () => void;
 }
 
-const WineCard: React.FC<WineCardProps> = ({
+const WineRecommendCard: React.FC<WineRecommendCardProps> = ({
   imageSrc,
-  wineName,
-  buttonText = "보러가기",
+  wine,
+  ranking,
   onSelected,
 }) => {
   return (
@@ -19,7 +27,7 @@ const WineCard: React.FC<WineCardProps> = ({
       <Card.Section>
         <Image
           src={imageSrc}
-          alt={wineName}
+          alt={wine.name}
           style={{
             width: "100%",
             height: "400px",
@@ -28,8 +36,9 @@ const WineCard: React.FC<WineCardProps> = ({
         />
       </Card.Section>
 
-      <Group justify="space-between" mt="md" mb="xs">
-        <Tooltip label={wineName} position="top" withArrow>
+      <Group mt="md" mb="xs">
+        <Badge>{ranking}등</Badge>
+        <Tooltip label={wine.name} position="top" withArrow>
           <Text
             fw={500}
             style={{
@@ -40,16 +49,16 @@ const WineCard: React.FC<WineCardProps> = ({
               fontSize: "clamp(12px, 2vw, 16px)",
             }}
           >
-            {wineName}
+            {wine.name}
           </Text>
         </Tooltip>
       </Group>
 
       <Button color="blue" fullWidth mt="md" radius="md" onClick={onSelected}>
-        {buttonText}
+        보러가기
       </Button>
     </Card>
   );
 };
 
-export default WineCard;
+export default WineRecommendCard;
