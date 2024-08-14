@@ -24,7 +24,12 @@ const WineRecommendContainer = () => {
   };
 
   const fetchRecommendWine = async () => {
-    const winesResponse = await recommendWine(preferWineId);
+    const winesResponse = await recommendWine(
+      preferWineId,
+      price,
+      tasty,
+      aroma
+    );
 
     setRecommendWines(winesResponse);
   };

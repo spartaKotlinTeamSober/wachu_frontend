@@ -66,12 +66,18 @@ export const compareWine = async (wineId: string[]): Promise<Wine[]> => {
 };
 
 export const recommendWine = async (
-  preferWineId: string | undefined
+  preferWineId: string | undefined,
+  priceWeight: number,
+  tastyWeight: number,
+  aromaWeight: number
 ): Promise<Wine[]> => {
   try {
     const response = await wachuApiClient.get(`api/v1/wines/recommend`, {
       params: {
         preferWineId: preferWineId,
+        priceWeight: priceWeight,
+        tastyWeight: tastyWeight,
+        aromaWeight: aromaWeight,
       },
     });
 
