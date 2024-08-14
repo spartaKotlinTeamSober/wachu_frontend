@@ -218,6 +218,15 @@ const SignUpForm = () => {
           c={"gray"}
           variant="subtle"
           onClick={() => {
+            navigate("/terms");
+          }}
+        >
+          서비스 이용약관
+        </Button>
+        <Button
+          c={"gray"}
+          variant="subtle"
+          onClick={() => {
             navigate("/privacy");
           }}
         >

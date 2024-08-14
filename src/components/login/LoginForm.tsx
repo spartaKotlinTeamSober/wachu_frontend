@@ -1,4 +1,10 @@
-import { Button, PasswordInput, Stack, TextInput } from "@mantine/core";
+import {
+  Button,
+  PasswordInput,
+  SimpleGrid,
+  Stack,
+  TextInput,
+} from "@mantine/core";
 import { postKakaoLogin, postLogin } from "../../api/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -83,15 +89,26 @@ const LoginForm = () => {
         >
           돌아가기
         </Button>
-        <Button
-          c={"gray"}
-          variant="subtle"
-          onClick={() => {
-            navigate("/privacy");
-          }}
-        >
-          개인정보 처리방침
-        </Button>
+        <SimpleGrid cols={2} spacing="md">
+          <Button
+            c={"gray"}
+            variant="subtle"
+            onClick={() => {
+              navigate("/terms");
+            }}
+          >
+            서비스 이용약관
+          </Button>
+          <Button
+            c={"gray"}
+            variant="subtle"
+            onClick={() => {
+              navigate("/privacy");
+            }}
+          >
+            개인정보 처리방침
+          </Button>
+        </SimpleGrid>
       </Stack>
     </form>
   );

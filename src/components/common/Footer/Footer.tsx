@@ -3,7 +3,7 @@ import classes from "./Footer.module.css";
 import { useNavigate } from "react-router-dom";
 
 const links = [
-  //   { link: "#", label: "Contact" },
+  { link: "/terms", label: "서비스 이용약관" },
   { link: "/privacy", label: "개인정보 처리방침" },
   //   { link: "#", label: "Blog" },
   //   { link: "#", label: "Careers" },
