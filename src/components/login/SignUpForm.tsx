@@ -214,6 +214,15 @@ const SignUpForm = () => {
         >
           로그인 화면으로
         </Button>
+        <Button
+          c={"gray"}
+          variant="subtle"
+          onClick={() => {
+            navigate("/privacy");
+          }}
+        >
+          개인정보약관
+        </Button>
       </Stack>
     </form>
   );

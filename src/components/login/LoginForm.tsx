@@ -83,6 +83,15 @@ const LoginForm = () => {
         >
           돌아가기
         </Button>
+        <Button
+          c={"gray"}
+          variant="subtle"
+          onClick={() => {
+            navigate("/privacy");
+          }}
+        >
+          개인정보약관
+        </Button>
       </Stack>
     </form>
   );
