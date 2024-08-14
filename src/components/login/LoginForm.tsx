@@ -90,7 +90,7 @@ const LoginForm = () => {
             navigate("/privacy");
           }}
         >
-          개인정보약관
+          개인정보 처리방침
         </Button>
       </Stack>
     </form>

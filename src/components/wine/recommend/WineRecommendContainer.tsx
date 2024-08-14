@@ -1,9 +1,10 @@
-import { Grid, Button, Text } from "@mantine/core";
+import { Grid, Button, Text, GridCol } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { getWine, recommendWine } from "../../../api/wines";
-import { Wine, WineType } from "../../../models/Wine";
+import { Wine } from "../../../models/Wine";
 import WineModal from "../WineModal";
 import WineRecommendList from "./WineRecommendList";
+import WineRecommendWeightSlider from "./WineRecommendWeightSlider";
 
 const WineRecommendContainer = () => {
   const [preferWine, setPreferWine] = useState<Wine>();
@@ -11,12 +12,9 @@ const WineRecommendContainer = () => {
   const [recommendWines, setRecommendWines] = useState<Wine[]>([]);
   const [shouldFetch, setShouldFetch] = useState<boolean>(false);
 
-  //   const [price, setPrice] = useState<number>();
-  //   const [sweetness, setSweetness] = useState<number[]>();
-  //   const [acidity, setAcidity] = useState<number[]>();
-  //   const [body, setBody] = useState<number[]>();
-  //   const [tannin, setTannin] = useState<number[]>();
-  //   const [type, setType] = useState<WineType>();
+  const [price, setPrice] = useState<number>(0);
+  const [tasty, setTasty] = useState<number>(0);
+  const [aroma, setAroma] = useState<number>(0);
 
   const fetchWine = async () => {
     if (preferWineId) {
@@ -73,6 +71,13 @@ const WineRecommendContainer = () => {
         <Grid.Col style={{ paddingTop: "14px" }} span={4}>
           <Text fw={500}>{preferWine?.name || ""}</Text>
         </Grid.Col>
+        <GridCol span={12}>
+          <WineRecommendWeightSlider
+            onPriceChanged={(value) => setPrice(value)}
+            onTastyChanged={(value) => setTasty(value)}
+            onAromaChanged={(value) => setAroma(value)}
+          />
+        </GridCol>
         <Grid.Col style={{ paddingTop: "14px" }} span={12}>
           <Button onClick={handleRecommendButton}>추천받기</Button>
         </Grid.Col>
