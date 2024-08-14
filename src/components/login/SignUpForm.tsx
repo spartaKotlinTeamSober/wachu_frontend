@@ -1,7 +1,9 @@
 import {
   Button,
   Group,
+  Image,
   PasswordInput,
+  rem,
   Stack,
   Text,
   TextInput,
@@ -9,8 +11,11 @@ import {
 import { postEmailCode, postSignUp } from "../../api/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Dropzone, FileWithPath } from "@mantine/dropzone";
+import { IconUpload, IconX, IconPhoto } from "@tabler/icons-react";
 
 const SignUpForm = () => {
+  const [file, setFile] = useState<FileWithPath[]>();
   const navigate = useNavigate();
 
   const [remainEmailCodeTime, setRemainEmailCodeTime] = useState<number | null>(
@@ -29,6 +34,22 @@ const SignUpForm = () => {
 
     const { email, nickname, password, confirmPassword, code } = data;
 
+    if (
+      email === "" ||
+      nickname === "" ||
+      password === "" ||
+      confirmPassword === "" ||
+      code === ""
+    ) {
+      alert("모든 항목을 입력해주세요.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
     const params = {
       email: email.toString(),
       nickname: nickname.toString(),
@@ -37,7 +58,7 @@ const SignUpForm = () => {
       code: code.toString(),
     };
 
-    const response = await postSignUp(params);
+    const response = await postSignUp(params, file && file[0]);
 
     if (response) {
       navigate("/");
@@ -70,7 +91,83 @@ const SignUpForm = () => {
 
   return (
     <form style={{ width: "30%" }} onSubmit={handleSubmit}>
-      <Stack gap="md">
+      <Text>프로필 사진</Text>
+      <div
+        style={{
+          border: "1px dashed var(--mantine-color-dimmed)",
+        }}
+      >
+        <Dropzone
+          onDrop={(file) => setFile(file)}
+          maxSize={5 * 1024 ** 2}
+          maxFiles={1}
+          multiple={false}
+          accept={["image/*"]}
+        >
+          <Group
+            justify="center"
+            gap="xl"
+            mih={200}
+            style={{ pointerEvents: "none" }}
+          >
+            <Dropzone.Accept>
+              <IconUpload
+                style={{
+                  width: rem(52),
+                  height: rem(52),
+                  color: "var(--mantine-color-blue-6)",
+                }}
+                stroke={1.5}
+              />
+            </Dropzone.Accept>
+            <Dropzone.Reject>
+              <IconX
+                style={{
+                  width: rem(52),
+                  height: rem(52),
+                  color: "var(--mantine-color-red-6)",
+                }}
+                stroke={1.5}
+              />
+            </Dropzone.Reject>
+            <Dropzone.Idle>
+              <IconPhoto
+                style={{
+                  width: rem(52),
+                  height: rem(52),
+                  color: "var(--mantine-color-dimmed)",
+                }}
+                stroke={1.5}
+              />
+            </Dropzone.Idle>
+            <div>
+              <Text size="xl" inline>
+                이미지를 드래그하거나 클릭해서 넣어주세요.
+              </Text>
+              <Text size="sm" c="dimmed" inline mt={7}>
+                5MB 이하의 이미지 파일만 업로드 가능합니다.
+              </Text>
+            </div>
+          </Group>
+        </Dropzone>
+      </div>
+      {file && (
+        <div
+          style={{
+            display: "flex",
+            marginTop: "20px",
+          }}
+        >
+          <Image
+            src={URL.createObjectURL(file[0])}
+            height={64}
+            width={64}
+            fit="cover"
+            style={{ maxWidth: "64px", maxHeight: "64px" }}
+          />
+        </div>
+      )}
+      <Stack style={{ marginTop: "12px" }} gap="md">
         <TextInput
           label="Email"
           placeholder="이메일"

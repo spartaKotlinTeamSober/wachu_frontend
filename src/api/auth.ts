@@ -19,14 +19,34 @@ export const postLogin = async (
   }
 };
 
-export const postSignUp = async (request: SignUpRequest): Promise<Profile> => {
+export const postSignUp = async (
+  request: SignUpRequest,
+  imageFile: File | undefined
+): Promise<Profile> => {
   try {
-    const response = await wachuApiClient.post(`/auth/sign-up`, {
-      email: request.email,
-      nickname: request.nickname,
-      password: request.password,
-      confirmPassword: request.confirmPassword,
-      code: request.code,
+    const formData = new FormData();
+    formData.append(
+      "request",
+      new Blob(
+        [
+          JSON.stringify({
+            email: request.email,
+            nickname: request.nickname,
+            password: request.password,
+            confirmPassword: request.confirmPassword,
+            code: request.code,
+          }),
+        ],
+        { type: "application/json" }
+      )
+    );
+
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
+    const response = await wachuApiClient.post(`/auth/sign-up`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
     });
 
     return response.data;
@@ -44,6 +64,15 @@ export const postLogout = async (): Promise<void> => {
     throw new Error("Failed to logout");
   }
 };
+
+export const deleteMember = async (): Promise<void> => {
+  try {
+    await wachuApiClient.delete(`/auth/deactivate`);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to delete member");
+  }
+}
 
 export const postEmailCode = async (email: string): Promise<void> => {
   try {
