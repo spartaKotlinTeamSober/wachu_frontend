@@ -6,6 +6,7 @@ import {
   Text,
   Badge,
   Tooltip,
+  Grid,
 } from "@mantine/core";
 import { Wine } from "../../../models/Wine";
 
@@ -53,6 +54,45 @@ const WineRecommendCard: React.FC<WineRecommendCardProps> = ({
           </Text>
         </Tooltip>
       </Group>
+
+      <Grid gutter={{ base: 3 }}>
+        <Grid.Col span={3} style={{ paddingLeft: "12px" }}>
+          <Text size="lg">추천도</Text>
+        </Grid.Col>
+        <Grid.Col span={9}>
+          <Text size="lg">99%</Text>
+        </Grid.Col>
+        <Grid.Col span={3} style={{ paddingLeft: "12px" }}>
+          <Text size="sm" c={"gray"}>
+            맛 유사도
+          </Text>
+        </Grid.Col>
+        <Grid.Col span={9}>
+          <Text size="sm" c={"gray"}>
+            99%
+          </Text>
+        </Grid.Col>
+        <Grid.Col span={3} style={{ paddingLeft: "12px" }}>
+          <Text size="sm" c={"gray"}>
+            가격 유사도
+          </Text>
+        </Grid.Col>
+        <Grid.Col span={9}>
+          <Text size="sm" c={"gray"}>
+            99%
+          </Text>
+        </Grid.Col>
+        <Grid.Col span={3} style={{ paddingLeft: "12px" }}>
+          <Text size="sm" c={"gray"}>
+            향기 유사도
+          </Text>
+        </Grid.Col>
+        <Grid.Col span={9}>
+          <Text size="sm" c={"gray"}>
+            99%
+          </Text>
+        </Grid.Col>
+      </Grid>
 
       <Button color="blue" fullWidth mt="md" radius="md" onClick={onSelected}>
         보러가기

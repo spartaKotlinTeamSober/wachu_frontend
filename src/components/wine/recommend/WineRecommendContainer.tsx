@@ -20,7 +20,7 @@ const WineRecommendContainer = () => {
       aroma: "",
     },
     {
-      id: 0,
+      id: 1,
       name: "테스트22123213213, 321321321",
       sweetness: 0,
       acidity: 0,
