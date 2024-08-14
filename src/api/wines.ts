@@ -1,5 +1,6 @@
 import { Wine, WineType } from "../models/Wine";
 import { wachuApiClient } from "./client";
+import { WineRecommendApiResponse } from "./response/WineRecommendApiResponse";
 import { WineApiResponse } from "./response/WinesApiResponse";
 
 export const getWines = async ({
@@ -70,7 +71,7 @@ export const recommendWine = async (
   priceWeight: number,
   tastyWeight: number,
   aromaWeight: number
-): Promise<Wine[]> => {
+): Promise<WineRecommendApiResponse[]> => {
   try {
     const response = await wachuApiClient.get(`api/v1/wines/recommend`, {
       params: {

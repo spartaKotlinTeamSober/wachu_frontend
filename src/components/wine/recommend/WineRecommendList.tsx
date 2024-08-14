@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { Wine } from "../../../models/Wine";
 import { SimpleGrid } from "@mantine/core";
 import WineRecommendCard from "./WineRecommendCard";
+import { WineRecommendApiResponse } from "../../../api/response/WineRecommendApiResponse";
 
-const WineRecommendList = ({ wines }: { wines: Wine[] }) => {
+const WineRecommendList = ({
+  wines,
+}: {
+  wines: WineRecommendApiResponse[];
+}) => {
   const navigate = useNavigate();
 
   const wineCardSelected = (wineId: number) => {
@@ -13,15 +17,17 @@ const WineRecommendList = ({ wines }: { wines: Wine[] }) => {
   return (
     <div style={{ width: "90%", margin: "30px auto" }}>
       <SimpleGrid cols={2}>
-        {wines.map((wine, index) => (
+        {wines.map((wineResponse, index) => (
           <WineRecommendCard
-            key={wine.id}
+            key={wineResponse.wine.id}
             imageSrc={
-              wine.imageUrl ? wine.imageUrl : "/src/assets/no_image.webp"
+              wineResponse.wine.imageUrl
+                ? wineResponse.wine.imageUrl
+                : "/src/assets/no_image.webp"
             }
-            wine={wine}
+            wineResponse={wineResponse}
             ranking={index + 1}
-            onSelected={() => wineCardSelected(wine.id)}
+            onSelected={() => wineCardSelected(wineResponse.wine.id)}
           />
         ))}
       </SimpleGrid>

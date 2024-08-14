@@ -5,11 +5,14 @@ import { Wine } from "../../../models/Wine";
 import WineModal from "../WineModal";
 import WineRecommendList from "./WineRecommendList";
 import WineRecommendWeightSlider from "./WineRecommendWeightSlider";
+import { WineRecommendApiResponse } from "../../../api/response/WineRecommendApiResponse";
 
 const WineRecommendContainer = () => {
   const [preferWine, setPreferWine] = useState<Wine>();
   const [preferWineId, setPreferWineId] = useState<string>();
-  const [recommendWines, setRecommendWines] = useState<Wine[]>([]);
+  const [recommendWines, setRecommendWines] = useState<
+    WineRecommendApiResponse[]
+  >([]);
   const [shouldFetch, setShouldFetch] = useState<boolean>(false);
 
   const [price, setPrice] = useState<number>(0);

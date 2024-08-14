@@ -8,18 +8,18 @@ import {
   Tooltip,
   Grid,
 } from "@mantine/core";
-import { Wine } from "../../../models/Wine";
+import { WineRecommendApiResponse } from "../../../api/response/WineRecommendApiResponse";
 
 interface WineRecommendCardProps {
   imageSrc: string;
-  wine: Wine;
+  wineResponse: WineRecommendApiResponse;
   ranking: number;
   onSelected?: () => void;
 }
 
 const WineRecommendCard: React.FC<WineRecommendCardProps> = ({
   imageSrc,
-  wine,
+  wineResponse: wineResponse,
   ranking,
   onSelected,
 }) => {
@@ -28,7 +28,7 @@ const WineRecommendCard: React.FC<WineRecommendCardProps> = ({
       <Card.Section>
         <Image
           src={imageSrc}
-          alt={wine.name}
+          alt={wineResponse.wine.name}
           style={{
             width: "100%",
             height: "400px",
@@ -39,7 +39,7 @@ const WineRecommendCard: React.FC<WineRecommendCardProps> = ({
 
       <Group mt="md" mb="xs">
         <Badge>{ranking}등</Badge>
-        <Tooltip label={wine.name} position="top" withArrow>
+        <Tooltip label={wineResponse.wine.name} position="top" withArrow>
           <Text
             fw={500}
             style={{
@@ -50,7 +50,7 @@ const WineRecommendCard: React.FC<WineRecommendCardProps> = ({
               fontSize: "clamp(12px, 2vw, 16px)",
             }}
           >
-            {wine.name}
+            {wineResponse.wine.name}
           </Text>
         </Tooltip>
       </Group>
@@ -60,7 +60,9 @@ const WineRecommendCard: React.FC<WineRecommendCardProps> = ({
           <Text size="lg">추천도</Text>
         </Grid.Col>
         <Grid.Col span={9}>
-          <Text size="lg">99%</Text>
+          <Text size="lg">
+            {(wineResponse.totalSimilarity * 100).toFixed(2)}%
+          </Text>
         </Grid.Col>
         <Grid.Col span={3} style={{ paddingLeft: "12px" }}>
           <Text size="sm" c={"gray"}>
@@ -69,7 +71,7 @@ const WineRecommendCard: React.FC<WineRecommendCardProps> = ({
         </Grid.Col>
         <Grid.Col span={9}>
           <Text size="sm" c={"gray"}>
-            99%
+            {(wineResponse.similarityMap["tasty"] * 100).toFixed(2)}%
           </Text>
         </Grid.Col>
         <Grid.Col span={3} style={{ paddingLeft: "12px" }}>
@@ -79,7 +81,7 @@ const WineRecommendCard: React.FC<WineRecommendCardProps> = ({
         </Grid.Col>
         <Grid.Col span={9}>
           <Text size="sm" c={"gray"}>
-            99%
+            {(wineResponse.similarityMap["price"] * 100).toFixed(2)}%
           </Text>
         </Grid.Col>
         <Grid.Col span={3} style={{ paddingLeft: "12px" }}>
@@ -89,7 +91,7 @@ const WineRecommendCard: React.FC<WineRecommendCardProps> = ({
         </Grid.Col>
         <Grid.Col span={9}>
           <Text size="sm" c={"gray"}>
-            99%
+            {(wineResponse.similarityMap["aroma"] * 100).toFixed(2)}%
           </Text>
         </Grid.Col>
       </Grid>
