@@ -1,5 +1,6 @@
 import qs from "qs";
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import { debounce } from "lodash";
 
 export const wachuApiClient: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_ENDPOINT as string,
@@ -23,9 +24,15 @@ const setGlobalLoading = (isLoading: boolean) => {
   document.body.classList.toggle("loading", activeRequests > 0);
 };
 
+type DebounceResolver = (
+  resolve: (value: InternalAxiosRequestConfig) => void
+) => void;
+const debounceMap = new Map<string, DebounceResolver>();
+
 wachuApiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    setGlobalLoading(true);
+    const requestKey = `${config.method}:${config.url}`;
+
     if (
       config.url?.includes("/logout") ||
       config.url?.includes("/refresh-token")
@@ -39,7 +46,20 @@ wachuApiClient.interceptors.request.use(
       config.headers["Authorization"] = `Bearer ${token}`;
     }
 
-    return config;
+    if (!debounceMap.has(requestKey)) {
+      setGlobalLoading(true);
+      debounceMap.set(
+        requestKey,
+        debounce((resolve) => {
+          resolve(config);
+          debounceMap.delete(requestKey); // 요청이 끝나면 맵에서 삭제
+        }, 500)
+      );
+    }
+
+    return new Promise((resolve) => {
+      debounceMap.get(requestKey)?.(resolve);
+    });
   },
   (error) => {
     setGlobalLoading(false);
