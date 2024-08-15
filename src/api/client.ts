@@ -12,8 +12,20 @@ export const wachuApiClient: AxiosInstance = axios.create({
   },
 });
 
+let activeRequests = 0;
+const setGlobalLoading = (isLoading: boolean) => {
+  if (isLoading) {
+    activeRequests++;
+  } else {
+    activeRequests--;
+  }
+  // activeRequests가 0보다 크면 로딩 중, 0이면 로딩 완료
+  document.body.classList.toggle("loading", activeRequests > 0);
+};
+
 wachuApiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
+    setGlobalLoading(true);
     if (
       config.url?.includes("/logout") ||
       config.url?.includes("/refresh-token")
@@ -30,13 +42,18 @@ wachuApiClient.interceptors.request.use(
     return config;
   },
   (error) => {
+    setGlobalLoading(false);
     return Promise.reject(error);
   }
 );
 
 wachuApiClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    setGlobalLoading(false);
+    return response;
+  },
   async (error) => {
+    setGlobalLoading(false);
     const originalRequest = error.config;
 
     if (

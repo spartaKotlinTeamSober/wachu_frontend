@@ -1,0 +1,40 @@
+/* 로딩 상태일 때 중앙에 작은 투명 배경과 스피너를 표시 */
+body.loading::before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 40px); /* Viewport height midpoint minus half of the height */
+  left: calc(50% - 40px); /* Viewport width midpoint minus half of the width */
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.6); /* 반투명한 배경 */
+  border-radius: 10px; /* 둥근 모서리 */
+  z-index: 1000;
+}
+
+/* 스피너 애니메이션 */
+body.loading::after {
+  content: "";
+  position: fixed;
+  top: calc(
+    50% - 20px
+  ); /* Viewport height midpoint minus half of the spinner size */
+  left: calc(
+    50% - 20px
+  ); /* Viewport width midpoint minus half of the spinner size */
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 1001;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
