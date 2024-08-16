@@ -1,8 +1,26 @@
-import { Card, Grid, Image, Text } from "@mantine/core";
+import { Button, Card, Grid, Image, Text } from "@mantine/core";
 import { Pairing } from "../../models/Pairing";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { deletePairing } from "../../api/pairings";
 
 const PairingDetailCard = ({ pairing }: { pairing: Pairing }) => {
+  const token = localStorage.getItem("token");
+  const claims = token ? jwtDecode(token) : { sub: "" };
+  const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    const response = await deletePairing(pairing.id.toString());
+
+    if (response === 204) {
+      alert("페어링이 삭제되었습니다.");
+      navigate("/pairing");
+    } else {
+      alert("페어링이 삭제에 실패했습니다.");
+    }
+  };
+
   return (
     <Card shadow="sm" padding="lg" style={{ maxWidth: "50%", margin: "auto" }}>
       <Card.Section style={{ padding: "1rem 0" }}>
@@ -38,6 +56,15 @@ const PairingDetailCard = ({ pairing }: { pairing: Pairing }) => {
           </Text>
         </Grid.Col>
       </Grid>
+      {pairing.member.id && claims.sub === pairing.member.id.toString() && (
+        <Button
+          color="red"
+          style={{ marginLeft: "auto", marginRight: "0px", width: "100px" }}
+          onClick={handleDelete}
+        >
+          삭제
+        </Button>
+      )}
     </Card>
   );
 };

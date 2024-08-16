@@ -61,5 +61,18 @@ export const postPairing = async (
   } catch (error) {
     console.error(error);
     throw new Error("Failed to create pairing");
-  } 
+  }
+};
+
+export const deletePairing = async (
+  id: string | undefined
+): Promise<number> => {
+  try {
+    const response = await wachuApiClient.delete(`api/v1/pairings/${id}`);
+
+    return response.status;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to delete pairing");
+  }
 };
