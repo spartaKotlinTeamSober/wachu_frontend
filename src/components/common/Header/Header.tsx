@@ -1,4 +1,4 @@
-import { Group, Menu, rem } from "@mantine/core";
+import { Group, Image, Menu, rem } from "@mantine/core";
 import { IconSearch } from "@tabler/icons-react";
 import classes from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,14 @@ export function Header() {
             href={"/"}
             className={classes.link}
             onClick={() => navigate("/")}
+            style={{ display: "flex", alignItems: "center" }}
           >
+            <Image
+              src="/wine_glass.png"
+              alt="Wine Glass"
+              width={30}
+              height={30}
+            />
             <h1>Wachu</h1>
           </a>
         </Group>
