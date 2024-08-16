@@ -87,6 +87,14 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
 
         <Grid.Col span={12}>
           <Text fw={50}>
+            {review.member.nickname
+              ? `${review.member.nickname} 님의 리뷰`
+              : `회원${review.member.id}번 님의 리뷰`}
+          </Text>
+        </Grid.Col>
+
+        <Grid.Col span={12}>
+          <Text fw={50}>
             {dayjs(review.createdAt).format("YYYY-MM-DD HH:mm:ss")}
           </Text>
         </Grid.Col>

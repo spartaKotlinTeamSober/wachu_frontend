@@ -60,6 +60,14 @@ const PairingDetailCard = ({ pairing }: { pairing: Pairing }) => {
 
         <Grid.Col span={12}>
           <Text fw={50}>
+            {pairing.member.nickname
+              ? `${pairing.member.nickname} 님의 리뷰`
+              : `회원${pairing.member.id}번 님의 리뷰`}
+          </Text>
+        </Grid.Col>
+
+        <Grid.Col span={12}>
+          <Text fw={50}>
             {dayjs(pairing.createdAt).format("YYYY-MM-DD HH:mm:ss")}
           </Text>
         </Grid.Col>
