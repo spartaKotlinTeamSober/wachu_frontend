@@ -1,4 +1,4 @@
-import { Anchor, Container, Group } from "@mantine/core";
+import { Anchor, Container, Group, Stack, Text } from "@mantine/core";
 import classes from "./Footer.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -30,9 +30,13 @@ export function Footer() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        <Group>
-          <p>@2024 wachu</p>
-        </Group>
+        <Stack style={{ maxWidth: "50%" }}>
+          <Text>© 2024 내일배움캠프 Kotlin 2기 - 함께 성장하는 Sober 팀</Text>
+          <Text size="sm">
+            이 웹사이트는 내일배움캠프 Kotlin 2기 최종 프로젝트로 개발된
+            사이트입니다. 모든 콘텐츠와 이미지는 교육적 목적으로만 사용됩니다.
+          </Text>
+        </Stack>
         <Group className={classes.links}>{items}</Group>
       </Container>
     </div>
