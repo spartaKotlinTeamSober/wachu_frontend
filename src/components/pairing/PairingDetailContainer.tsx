@@ -23,7 +23,6 @@ const PairingDetailContainer = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
       }}
     >
       {pairing && <PairingDetailCard pairing={pairing} />}

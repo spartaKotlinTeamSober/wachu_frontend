@@ -30,9 +30,9 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
               src={media.mediaUrl}
               alt="리뷰 사진"
               style={{
-                maxWidth: "100%",
+                width: "100%",
                 maxHeight: "700px",
-                objectFit: "cover",
+                objectFit: "contain",
               }}
             />
           </div>
@@ -50,7 +50,15 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
 
         <Grid.Col span={12}>
           <pre>
-            <Text fw={100}>{review.description}</Text>
+            <Text
+              style={{
+                whiteSpace: "pre-line",
+                wordWrap: "break-word",
+              }}
+              fw={100}
+            >
+              {review.description}
+            </Text>
           </pre>
         </Grid.Col>
 

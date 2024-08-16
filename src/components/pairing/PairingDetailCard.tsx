@@ -30,9 +30,9 @@ const PairingDetailCard = ({ pairing }: { pairing: Pairing }) => {
           }
           alt="페어링 사진"
           style={{
-            maxWidth: "100%",
+            width: "100%",
             maxHeight: "500px",
-            objectFit: "cover",
+            objectFit: "contain",
           }}
         />
       </Card.Section>
@@ -47,7 +47,15 @@ const PairingDetailCard = ({ pairing }: { pairing: Pairing }) => {
         </Grid.Col>
 
         <Grid.Col span={12}>
-          <Text fw={200}>{pairing.description}</Text>
+          <Text
+            style={{
+              whiteSpace: "pre-wrap",
+              wordWrap: "break-word",
+            }}
+            fw={200}
+          >
+            {pairing.description}
+          </Text>
         </Grid.Col>
 
         <Grid.Col span={12}>

@@ -27,7 +27,6 @@ const ReviewDetailContainer = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
       }}
     >
       {review && <ReviewDetailCard review={review} />}
