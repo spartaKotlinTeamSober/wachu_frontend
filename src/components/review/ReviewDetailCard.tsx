@@ -1,9 +1,10 @@
-import { Button, Card, Grid, Image, Text } from "@mantine/core";
+import { Button, Card, Grid, Group, Image, Text } from "@mantine/core";
 import dayjs from "dayjs";
 import { Review } from "../../models/Review";
 import { jwtDecode } from "jwt-decode";
 import { deleteReview } from "../../api/reviews";
 import { useNavigate } from "react-router-dom";
+import { IconStar } from "@tabler/icons-react";
 
 const ReviewDetailCard = ({ review }: { review: Review }) => {
   const token = localStorage.getItem("token");
@@ -20,6 +21,15 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
       alert("리뷰 삭제에 실패했습니다.");
     }
   };
+
+  const stars = Array.from({ length: 5 }, (_, index) => (
+    <IconStar
+      key={index}
+      size={24}
+      stroke={1.5}
+      color={index < review.score ? "#ffd700" : "#e4e5e9"}
+    />
+  ));
 
   return (
     <Card shadow="sm" padding="lg" style={{ maxWidth: "80%", margin: "auto" }}>
@@ -60,6 +70,19 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
               {review.description}
             </Text>
           </pre>
+        </Grid.Col>
+
+        <Grid.Col span={12}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "10px",
+              marginBottom: "-5px",
+            }}
+          >
+            <Group>{stars}</Group>
+          </div>
         </Grid.Col>
 
         <Grid.Col span={12}>
