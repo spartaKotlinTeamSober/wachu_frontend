@@ -1,6 +1,7 @@
 import qs from "qs";
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import { debounce } from "lodash";
+import { showNotification } from "@mantine/notifications";
 
 export const wachuApiClient: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_ENDPOINT as string,
@@ -109,6 +110,13 @@ wachuApiClient.interceptors.response.use(
         window.location.href = "/login";
         return Promise.reject(refreshError);
       }
+    } else {
+      showNotification({
+        title: "Error",
+        message:
+          error.response?.data?.message || "알 수 없는 오류가 발생했습니다.",
+        color: "red",
+      });
     }
 
     return Promise.reject(error);
