@@ -58,19 +58,21 @@ const PairingDetailCard = ({ pairing }: { pairing: Pairing }) => {
 
         <Grid.Col span={12}>
           <Group gap={"sm"}>
-            <Image
-              src={pairing.member.profileUrl}
-              alt={`${
-                pairing.member.nickname || `회원${pairing.member.id}`
-              } 님의 프로필`}
-              width={30}
-              height={30}
-              radius="50%"
-              style={{
-                aspectRatio: "1 / 1",
-                objectFit: "cover",
-              }}
-            />
+            {pairing.member.profileUrl && (
+              <Image
+                src={pairing.member.profileUrl}
+                alt={`${
+                  pairing.member.nickname || `회원${pairing.member.id}`
+                } 님의 프로필`}
+                width={30}
+                height={30}
+                radius="50%"
+                style={{
+                  aspectRatio: "1 / 1",
+                  objectFit: "cover",
+                }}
+              />
+            )}
             <Text fw={50}>
               {pairing.member.nickname
                 ? `${pairing.member.nickname}`
