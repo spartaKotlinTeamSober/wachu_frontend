@@ -1,4 +1,4 @@
-import { Button, Card, Grid, Image, Text } from "@mantine/core";
+import { Button, Card, Grid, Group, Image, Text } from "@mantine/core";
 import { Pairing } from "../../models/Pairing";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
@@ -57,11 +57,26 @@ const PairingDetailCard = ({ pairing }: { pairing: Pairing }) => {
         </Grid.Col>
 
         <Grid.Col span={12}>
-          <Text fw={50}>
-            {pairing.member.nickname
-              ? `${pairing.member.nickname} 님의 리뷰`
-              : `회원${pairing.member.id}번 님의 리뷰`}
-          </Text>
+          <Group gap={"sm"}>
+            <Image
+              src={pairing.member.profileUrl}
+              alt={`${
+                pairing.member.nickname || `회원${pairing.member.id}`
+              } 님의 프로필`}
+              width={30}
+              height={30}
+              radius="50%"
+              style={{
+                aspectRatio: "1 / 1",
+                objectFit: "cover",
+              }}
+            />
+            <Text fw={50}>
+              {pairing.member.nickname
+                ? `${pairing.member.nickname}`
+                : `회원${pairing.member.id}번`}
+            </Text>
+          </Group>
         </Grid.Col>
 
         <Grid.Col span={12}>

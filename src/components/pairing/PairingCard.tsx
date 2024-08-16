@@ -23,7 +23,17 @@ const PairingCard: React.FC<PairingCardProps> = ({ pairing, onSelected }) => {
       </Card.Section>
 
       <Group justify="space-between" mt="md" mb="xs">
-        <Text fw={100}>{pairing.wine.name}</Text>
+        <Text
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            maxWidth: "100%",
+          }}
+          fw={100}
+        >
+          {pairing.wine.name}
+        </Text>
       </Group>
 
       <Text
@@ -37,6 +47,29 @@ const PairingCard: React.FC<PairingCardProps> = ({ pairing, onSelected }) => {
       >
         {pairing.title}
       </Text>
+
+      <Group style={{ marginTop: "8px" }} gap={"sm"}>
+        {pairing.member.profileUrl && (
+          <Image
+            src={pairing.member.profileUrl}
+            alt={`${
+              pairing.member.nickname || `회원${pairing.member.id}`
+            } 님의 프로필`}
+            width={18}
+            height={18}
+            radius="50%"
+            style={{
+              aspectRatio: "1 / 1",
+              objectFit: "cover",
+            }}
+          />
+        )}
+        <Text size="sm" fw={300}>
+          {pairing.member.nickname
+            ? `${pairing.member.nickname}`
+            : `회원${pairing.member.id}번`}
+        </Text>
+      </Group>
 
       <Button color="blue" fullWidth mt="md" radius="md" onClick={onSelected}>
         상세보기

@@ -86,11 +86,26 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
         </Grid.Col>
 
         <Grid.Col span={12}>
-          <Text fw={50}>
-            {review.member.nickname
-              ? `${review.member.nickname} 님의 리뷰`
-              : `회원${review.member.id}번 님의 리뷰`}
-          </Text>
+          <Group gap={"sm"}>
+            <Image
+              src={review.member.profileUrl}
+              alt={`${
+                review.member.nickname || `회원${review.member.id}`
+              } 님의 프로필`}
+              width={30}
+              height={30}
+              radius="50%"
+              style={{
+                aspectRatio: "1 / 1",
+                objectFit: "cover",
+              }}
+            />
+            <Text fw={50}>
+              {review.member.nickname
+                ? `${review.member.nickname} 님의 리뷰`
+                : `회원${review.member.id}번 님의 리뷰`}
+            </Text>
+          </Group>
         </Grid.Col>
 
         <Grid.Col span={12}>

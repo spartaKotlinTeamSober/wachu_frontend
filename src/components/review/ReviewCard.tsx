@@ -1,4 +1,4 @@
-import { Card, Text, Button, Group } from "@mantine/core";
+import { Card, Text, Button, Group, Image } from "@mantine/core";
 import { Review } from "../../models/Review";
 import { IconStar } from "@tabler/icons-react";
 
@@ -52,6 +52,29 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review, onSelected }) => {
       >
         {review.description}
       </Text>
+
+      <Group style={{ marginTop: "8px" }} gap={"sm"}>
+        {review.member.profileUrl && (
+          <Image
+            src={review.member.profileUrl}
+            alt={`${
+              review.member.nickname || `회원${review.member.id}`
+            } 님의 프로필`}
+            width={24}
+            height={24}
+            radius="50%"
+            style={{
+              aspectRatio: "1 / 1",
+              objectFit: "cover",
+            }}
+          />
+        )}
+        <Text size="sm" fw={300}>
+          {review.member.nickname
+            ? `${review.member.nickname}`
+            : `회원${review.member.id}번`}
+        </Text>
+      </Group>
 
       <div
         style={{
