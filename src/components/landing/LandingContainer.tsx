@@ -1,29 +1,59 @@
 import { useEffect, useState } from "react";
-import { getWines } from "../../api/wines";
-import { Wine } from "../../models/Wine";
 import DefaultGrid from "../common/DefaultGrid";
-// import { PromotionWineCard } from "../promotion/PromotionWineCard";
 import { LandingHero } from "./LandingHero";
-import WineCard from "../wine/WineCard";
 import { useNavigate } from "react-router-dom";
+import { getReviews } from "../../api/reviews";
+import { getPairings } from "../../api/pairings";
+import { Review } from "../../models/Review";
+import { Pairing } from "../../models/Pairing";
+import PairingCard from "../pairing/PairingCard";
+import ReviewCard from "../review/ReviewCard";
+import { Stack, Text } from "@mantine/core";
 
 const LandingContainer = () => {
   const navigate = useNavigate();
-  const [wines, setWines] = useState<Wine[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [pairings, setPairings] = useState<Pairing[]>([]);
   const [shouldFetch, setShouldFetch] = useState<boolean>(true);
 
-  const fetchWines = async () => {
-    const winesResponse = await getWines({
-      page: 0,
-      size: 3,
-    });
+  const fetchReviews = async () => {
+    try {
+      const reviewResponse = await getReviews(0, 9);
+      const shuffledReviews = reviewResponse.content.sort(
+        () => Math.random() - 0.5
+      );
+      const randomReviews = shuffledReviews.slice(0, 3);
+      setReviews(randomReviews);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    }
+  };
 
-    setWines(winesResponse.content);
+  const fetchPairings = async () => {
+    try {
+      const pairingResponse = await getPairings(0, 9);
+      const shuffledPairings = pairingResponse.content.sort(
+        () => Math.random() - 0.5
+      );
+      const randomPairings = shuffledPairings.slice(0, 3);
+      setPairings(randomPairings);
+    } catch (error) {
+      console.error("Error fetching pairings:", error);
+    }
+  };
+
+  const pairingCardSelected = (pairingId: number) => {
+    navigate(`/pairing/${pairingId}`);
+  };
+
+  const reviewCardSelected = (reviewId: number) => {
+    navigate(`/review/${reviewId}`);
   };
 
   useEffect(() => {
     if (shouldFetch) {
-      fetchWines();
+      fetchReviews();
+      fetchPairings();
       setShouldFetch(false);
     }
   }, [shouldFetch]);
@@ -32,26 +62,36 @@ const LandingContainer = () => {
     <div>
       <LandingHero />
       <div style={{ margin: "50px 20px 20px 20px" }}>
-        <DefaultGrid>
-          {wines.map((wine) => (
-            <WineCard
-              key={wine.id}
-              imageSrc={wine.imageUrl ? wine.imageUrl : "/no_image.webp"}
-              wineName={wine.name}
-              onSelected={() => {
-                navigate(`/wines/${wine.id}`);
-              }}
-            />
-          ))}
-        </DefaultGrid>
+        <Stack gap="md">
+          <Text size="xl" fw={700}>
+            페어링
+          </Text>
+          <DefaultGrid>
+            {pairings.map((pairing) => (
+              <div key={pairing.id}>
+                <PairingCard
+                  pairing={pairing}
+                  onSelected={() => pairingCardSelected(pairing.id)}
+                />
+              </div>
+            ))}
+          </DefaultGrid>
+
+          <Text style={{ marginTop: "30px" }} size="xl" fw={700}>
+            리뷰
+          </Text>
+          <DefaultGrid>
+            {reviews.map((review) => (
+              <div key={review.id}>
+                <ReviewCard
+                  review={review}
+                  onSelected={() => reviewCardSelected(review.id)}
+                />
+              </div>
+            ))}
+          </DefaultGrid>
+        </Stack>
       </div>
-      {/* <div style={{ margin: "50px 20px 20px 20px" }}>
-        <DefaultGrid>
-          <PromotionWineCard />
-          <PromotionWineCard />
-          <PromotionWineCard />
-        </DefaultGrid>
-      </div> */}
     </div>
   );
 };

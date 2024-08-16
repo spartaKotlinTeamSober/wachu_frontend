@@ -3,12 +3,15 @@ import { wachuApiClient } from "./client";
 import { ReviewCreateRequest } from "./request/ReviewCreateRequest";
 import { ReviewsApiResponse } from "./response/ReviewsApiResponse";
 
-export const getReviews = async (page: number): Promise<ReviewsApiResponse> => {
+export const getReviews = async (
+  page: number,
+  size = 9
+): Promise<ReviewsApiResponse> => {
   try {
     const response = await wachuApiClient.get("api/v1/reviews", {
       params: {
         page: page,
-        size: 9,
+        size: size,
         sort: "id,desc",
       },
     });
