@@ -175,6 +175,7 @@ const SignUpForm = () => {
           value={email}
           onChange={(event) => setEmail(event.currentTarget.value)}
         />
+
         <Group>
           <Button onClick={handleEmailCodeButton}>
             {remainEmailCodeTime === null
@@ -191,6 +192,9 @@ const SignUpForm = () => {
             </>
           )}
         </Group>
+        {remainEmailCodeTime !== null && (
+          <Text size="xs">메일 발송에 최대 1분정도 소요될 수 있습니다.</Text>
+        )}
         <TextInput label="Nickname" placeholder="닉네임" name="nickname" />
         <PasswordInput
           label="Password"
