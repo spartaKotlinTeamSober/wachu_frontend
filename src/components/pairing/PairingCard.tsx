@@ -26,7 +26,17 @@ const PairingCard: React.FC<PairingCardProps> = ({ pairing, onSelected }) => {
         <Text fw={100}>{pairing.wine.name}</Text>
       </Group>
 
-      <Text fw={500}>{pairing.title}</Text>
+      <Text
+        style={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          maxWidth: "100%",
+        }}
+        fw={500}
+      >
+        {pairing.title}
+      </Text>
 
       <Button color="blue" fullWidth mt="md" radius="md" onClick={onSelected}>
         상세보기
