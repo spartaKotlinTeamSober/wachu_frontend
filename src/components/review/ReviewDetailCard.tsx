@@ -6,8 +6,8 @@ import { deleteReview } from "../../api/reviews";
 import { useNavigate } from "react-router-dom";
 
 const ReviewDetailCard = ({ review }: { review: Review }) => {
-  const token = localStorage.getItem("token") ?? "";
-  const claims = jwtDecode(token);
+  const token = localStorage.getItem("token");
+  const claims = token ? jwtDecode(token) : { sub: "" };
   const navigate = useNavigate();
 
   const handleDelete = async () => {

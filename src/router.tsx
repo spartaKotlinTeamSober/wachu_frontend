@@ -19,6 +19,7 @@ import ReviewDetailPage from "./pages/ReviewDetailPage";
 import ProfilePage from "./pages/ProfilePage";
 import PrivacyPage from "./pages/PrivacyPage";
 import TermsPage from "./pages/TermsPage";
+import ProfileEditPage from "./pages/ProfileEditPage";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "profile/edit",
+        element: <ProfileEditPage />,
       },
       {
         path: "wines",
