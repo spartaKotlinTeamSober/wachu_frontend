@@ -1,5 +1,6 @@
 import { Wine, WineType } from "../models/Wine";
 import { wachuApiClient } from "./client";
+import { PromotionWinesApiResponse } from "./response/PromotionWinesApiResponse";
 import { WineRecommendApiResponse } from "./response/WineRecommendApiResponse";
 import { WineApiResponse } from "./response/WinesApiResponse";
 
@@ -89,13 +90,13 @@ export const recommendWine = async (
   }
 };
 
-export const promotionWines = async (): Promise<Wine[]> => {
+export const promotionWines = async (): Promise<PromotionWinesApiResponse> => {
   try {
     const response = await wachuApiClient.get("api/v1/wines/promotion");
 
     return response.data;
   } catch (error) {
     console.error(error);
-    return [];
+    throw new Error("Failed to fetch promotion wines");
   }
 };

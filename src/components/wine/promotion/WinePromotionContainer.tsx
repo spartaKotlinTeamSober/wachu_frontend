@@ -11,8 +11,9 @@ const WinePromotionContainer = () => {
     try {
       const response = await promotionWines();
 
-      if (Array.isArray(response)) {
-        setWines(response);
+      if (Array.isArray(response.content)) {
+        const wines = response.content.map((item) => item.wine);
+        setWines(wines);
       }
     } catch (error) {
       console.error(error);
