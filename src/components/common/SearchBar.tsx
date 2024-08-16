@@ -20,6 +20,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         value={query}
         onChange={(event) => setQuery(event.currentTarget.value)}
         style={{ flexGrow: 1 }}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            handleSearch();
+          }
+        }}
       />
       <Button onClick={handleSearch}>검색</Button>
     </Flex>
