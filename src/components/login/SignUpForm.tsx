@@ -32,7 +32,7 @@ const SignUpForm = () => {
     sendEmailCode(email);
   };
 
-  const handleEmailChange = (event) => {
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
     setEmail(value);
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
