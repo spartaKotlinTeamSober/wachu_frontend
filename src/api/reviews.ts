@@ -9,6 +9,7 @@ export const getReviews = async (page: number): Promise<ReviewsApiResponse> => {
       params: {
         page: page,
         size: 9,
+        sort: "id,desc",
       },
     });
 

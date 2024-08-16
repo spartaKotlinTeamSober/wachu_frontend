@@ -11,6 +11,7 @@ export const getPairings = async (
       params: {
         page: page,
         size: 9,
+        sort: "id,desc",
       },
     });
 
