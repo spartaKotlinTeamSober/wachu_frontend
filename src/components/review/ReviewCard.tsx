@@ -1,5 +1,6 @@
-import { Card, Text, Button } from "@mantine/core";
+import { Card, Text, Button, Group } from "@mantine/core";
 import { Review } from "../../models/Review";
+import { IconStar } from "@tabler/icons-react";
 
 interface ReviewCardProps {
   review: Review;
@@ -7,6 +8,15 @@ interface ReviewCardProps {
 }
 
 const ReviewCard: React.FC<ReviewCardProps> = ({ review, onSelected }) => {
+  const stars = Array.from({ length: 5 }, (_, index) => (
+    <IconStar
+      key={index}
+      size={24}
+      stroke={1.5}
+      color={index < review.score ? "#ffd700" : "#e4e5e9"}
+    />
+  ));
+
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Text
@@ -14,9 +24,17 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review, onSelected }) => {
           whiteSpace: "nowrap",
           overflow: "hidden",
           textOverflow: "ellipsis",
-          maxWidth: "100%",
         }}
         fw={700}
+      >
+        {review.wine.name} 리뷰
+      </Text>
+
+      <Text
+        style={{
+          maxWidth: "100%",
+        }}
+        fw={500}
       >
         {review.title}
       </Text>
@@ -35,18 +53,16 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review, onSelected }) => {
         {review.description}
       </Text>
 
-      <Text
+      <div
         style={{
+          display: "flex",
+          justifyContent: "center",
           marginTop: "10px",
-          marginBottom: "-10px",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
+          marginBottom: "-5px",
         }}
-        fw={700}
       >
-        {review.wine.name} 리뷰
-      </Text>
+        <Group>{stars}</Group>
+      </div>
 
       <Button color="blue" fullWidth mt="md" radius="md" onClick={onSelected}>
         보러가기
