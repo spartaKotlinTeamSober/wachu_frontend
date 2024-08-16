@@ -59,17 +59,15 @@ const ReviewDetailCard = ({ review }: { review: Review }) => {
         </Grid.Col>
 
         <Grid.Col span={12}>
-          <pre>
-            <Text
-              style={{
-                whiteSpace: "pre-line",
-                wordWrap: "break-word",
-              }}
-              fw={100}
-            >
-              {review.description}
-            </Text>
-          </pre>
+          <Text
+            style={{
+              whiteSpace: "pre-line",
+              wordWrap: "break-word",
+            }}
+            fw={100}
+          >
+            {review.description}
+          </Text>
         </Grid.Col>
 
         <Grid.Col span={12}>
