@@ -16,6 +16,7 @@ import { IconUpload, IconX, IconPhoto } from "@tabler/icons-react";
 
 const SignUpForm = () => {
   const [file, setFile] = useState<FileWithPath[]>();
+  const [isValid, setIsValid] = useState(true);
   const navigate = useNavigate();
 
   const [remainEmailCodeTime, setRemainEmailCodeTime] = useState<number | null>(
@@ -24,7 +25,18 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
 
   const handleEmailCodeButton = () => {
+    if (email === "") {
+      alert("이메일을 입력해주세요.");
+      return;
+    }
     sendEmailCode(email);
+  };
+
+  const handleEmailChange = (event) => {
+    const value = event.currentTarget.value;
+    setEmail(value);
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsValid(emailPattern.test(value));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -173,9 +185,13 @@ const SignUpForm = () => {
           placeholder="이메일"
           name="email"
           value={email}
-          onChange={(event) => setEmail(event.currentTarget.value)}
+          onChange={handleEmailChange}
+          error={
+            !isValid && email.length > 0
+              ? "올바른 이메일 주소를 입력하세요"
+              : null
+          }
         />
-
         <Group>
           <Button onClick={handleEmailCodeButton}>
             {remainEmailCodeTime === null
