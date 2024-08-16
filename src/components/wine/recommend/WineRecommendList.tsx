@@ -23,7 +23,7 @@ const WineRecommendList = ({
             imageSrc={
               wineResponse.wine.imageUrl
                 ? wineResponse.wine.imageUrl
-                : "/src/assets/no_image.webp"
+                : "/no_image.webp"
             }
             wineResponse={wineResponse}
             ranking={index + 1}

@@ -15,7 +15,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
       style={{ width: "20%", margin: "50px auto" }}
     >
       <Avatar
-        src={profile.profileUrl ?? "assets/no_image.webp"}
+        src={profile.profileUrl ?? "/no_image.webp"}
         size={120}
         radius={120}
         mx="auto"

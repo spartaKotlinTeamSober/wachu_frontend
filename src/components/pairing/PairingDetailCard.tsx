@@ -25,9 +25,7 @@ const PairingDetailCard = ({ pairing }: { pairing: Pairing }) => {
     <Card shadow="sm" padding="lg" style={{ maxWidth: "50%", margin: "auto" }}>
       <Card.Section style={{ padding: "1rem 0" }}>
         <Image
-          src={
-            pairing.photoUrl ? pairing.photoUrl : "/src/assets/no_image.webp"
-          }
+          src={pairing.photoUrl ? pairing.photoUrl : "/no_image.webp"}
           alt="페어링 사진"
           style={{
             width: "100%",

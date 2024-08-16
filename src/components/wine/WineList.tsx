@@ -16,9 +16,7 @@ const WineList = ({ wines }: { wines: Wine[] }) => {
         {wines.map((wine) => (
           <WineCard
             key={wine.id}
-            imageSrc={
-              wine.imageUrl ? wine.imageUrl : "/src/assets/no_image.webp"
-            }
+            imageSrc={wine.imageUrl ? wine.imageUrl : "/no_image.webp"}
             wineName={wine.name}
             buttonText={"더 알아보기"}
             onSelected={() => wineCardSelected(wine.id)}

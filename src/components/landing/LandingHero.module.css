@@ -5,6 +5,7 @@
   background-color: red;
   background-size: cover;
   background-position: center;
+  background-image: url("/hero_background.jpeg");
 
   @media (max-width: $mantine-breakpoint-xs) {
     padding-top: rem(80px);

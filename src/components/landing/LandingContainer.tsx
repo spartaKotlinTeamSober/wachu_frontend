@@ -36,9 +36,7 @@ const LandingContainer = () => {
           {wines.map((wine) => (
             <WineCard
               key={wine.id}
-              imageSrc={
-                wine.imageUrl ? wine.imageUrl : "/src/assets/no_image.webp"
-              }
+              imageSrc={wine.imageUrl ? wine.imageUrl : "/no_image.webp"}
               wineName={wine.name}
               onSelected={() => {
                 navigate(`/wines/${wine.id}`);

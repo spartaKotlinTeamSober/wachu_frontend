@@ -6,7 +6,9 @@ export function LandingHero() {
   const navigate = useNavigate();
 
   return (
-    <div className={classes.wrapper}>
+    <div
+      className={classes.wrapper}
+    >
       <Overlay color="#000" opacity={0.65} zIndex={1} />
 
       <div className={classes.inner}>

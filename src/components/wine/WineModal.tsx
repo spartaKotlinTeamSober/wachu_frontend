@@ -74,9 +74,7 @@ const WineModal: React.FC<WineModalProps> = ({
             {wines.map((wine) => (
               <WineCard
                 key={wine.id}
-                imageSrc={
-                  wine.imageUrl ? wine.imageUrl : "/src/assets/no_image.webp"
-                }
+                imageSrc={wine.imageUrl ? wine.imageUrl : "/no_image.webp"}
                 wineName={wine.name}
                 buttonText={"선택하기"}
                 onSelected={() => wineCardSelected(wine.id)}

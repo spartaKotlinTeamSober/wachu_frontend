@@ -29,7 +29,7 @@ const WineDetailCard = ({ wine }: { wine: Wine }) => {
     <Card shadow="sm" padding="lg" style={{ maxWidth: 500, margin: "auto" }}>
       <Card.Section style={{ padding: "1rem 0" }}>
         <Image
-          src={wine.imageUrl ? wine.imageUrl : "/src/assets/no_image.webp"}
+          src={wine.imageUrl ? wine.imageUrl : "/no_image.webp"}
           alt="와인 사진"
           style={{
             width: "100%",
