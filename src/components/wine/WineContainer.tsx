@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getWines } from "../../api/wines";
 import WineList from "./WineList";
 import { Wine, WineType } from "../../models/Wine";
-import { Pagination } from "@mantine/core";
+import { Pagination, Text } from "@mantine/core";
 import SearchBar from "../common/SearchBar";
 import WineFilter from "./WineFilter";
 
@@ -68,6 +68,11 @@ const WineContainer = () => {
         onTanninChanged={setTannin}
         onTypeChanged={setType}
       />
+      {wines.length === 0 && (
+        <Text ta="center" size="xl" fw={700}>
+          검색 결과가 없습니다
+        </Text>
+      )}
       <WineList wines={wines} />
       <Pagination
         onChange={handlePageChange}

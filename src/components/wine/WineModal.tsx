@@ -1,6 +1,6 @@
 // ModalComponent.tsx
 import React, { useEffect, useState } from "react";
-import { Modal, Pagination } from "@mantine/core";
+import { Modal, Pagination, Text } from "@mantine/core";
 import DefaultGrid from "../common/DefaultGrid";
 import WineCard from "./WineCard";
 import SearchBar from "../common/SearchBar";
@@ -71,6 +71,11 @@ const WineModal: React.FC<WineModalProps> = ({
             <SearchBar onSearch={handleSearch} />
           </div>
           <DefaultGrid>
+            {wines.length === 0 && (
+              <Text ta="center" size="xl" fw={700}>
+                검색 결과가 없습니다
+              </Text>
+            )}
             {wines.map((wine) => (
               <WineCard
                 key={wine.id}
